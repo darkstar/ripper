@@ -34,10 +34,6 @@ const HeaderStruct MIDIRipper::s_headers[] = {
     {"", 0}
 };
 
-#pragma pack(push, 1)
-
-#pragma pack(pop)
-
 unsigned long MIDIRipper::IsValidChunk(unsigned char *pos)
 {
 	unsigned long chunksize;
