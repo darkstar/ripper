@@ -135,11 +135,11 @@ bool MODRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 
 	// the module ID is at file offset 1080, so we need at least these many bytes BEFORE pos
 //  if (pos - info->m_magic_offset < m_start)
-  if (pos - header->extra_len_before < m_start)
+	if (pos - header->extra_len_before < m_start)
 		return false;
 
 //  modstart = pos - info->m_magic_offset;
-  modstart = pos - header->extra_len_before;
+	modstart = pos - header->extra_len_before;
 
 	// check module file name for valid ASCII chars
 	for (int i = 0; i < 20; i++)
@@ -151,7 +151,7 @@ bool MODRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 	}
 
 	// check sample names
-  for (int i = 0; i < info->m_instruments; i++)
+	for (int i = 0; i < info->m_instruments; i++)
 	{
 		if (!IsValidMODSampleHeader(modstart + 20 + i * sizeof(SampleHeader), &sampleSize))
 			return false;
@@ -172,7 +172,7 @@ bool MODRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 	if (lastPattern > 128)
 		return false; // again, more than 128 patterns is a no-no
 
-  patternSize = info->m_channels * 4 * 64; // n channels * 4 bytes/channel,line, * 64lines/pattern
+	patternSize = info->m_channels * 4 * 64; // n channels * 4 bytes/channel,line, * 64lines/pattern
 
 	// there still seems to be an error lurking somewhere here... some MOD files
 	// are detected a few bytes (<16 noticed so far) too short. dunno why. both were
@@ -181,7 +181,7 @@ bool MODRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 	strcpy(found->extension, "MOD");
 	found->startoffset = modstart;
 //  found->length = (lastPattern + 1) * patternSize + sampleSize + info->m_magic_offset + 4; // the 4 is the length of the header ID
-  found->length = (lastPattern + 1) * patternSize + sampleSize + header->extra_len_before + 4; // the 4 is the length of the header ID
+	found->length = (lastPattern + 1) * patternSize + sampleSize + header->extra_len_before + 4; // the 4 is the length of the header ID
 
 	return true;
 }
