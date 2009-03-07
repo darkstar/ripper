@@ -30,7 +30,7 @@
 const char *MIDIRipper::s_name = "MIDI Ripper v1.0";
 
 const HeaderStruct MIDIRipper::s_headers[] = {
-		{"MThd", 4},
+	{"MThd", 4},
     {"", 0}
 };
 

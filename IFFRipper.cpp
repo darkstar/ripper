@@ -26,8 +26,8 @@ using namespace std;
 const char *IFFRipper::s_name = "Generic IFF/LBM/XMI/AIFF/8SV Ripper v1.2";
 
 const HeaderStruct IFFRipper::s_headers[] = {
-		{"FORM", 4},
-    {"", 0}
+	{"FORM", 4},
+	{"", 0}
 };
 
 #define ISNUMBER(x) (((x) >= '0') && ((x) <= '9'))
@@ -39,6 +39,7 @@ bool IFFRipper::validChunkName(unsigned char *pos)
 {
 	return ISVALID(pos[0]) && ISVALID(pos[1]) && ISVALID(pos[2]) && ISVALID(pos[3]);
 };
+
 #undef ISVALID
 #undef ISOTHER
 #undef ISUPPER

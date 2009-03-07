@@ -27,7 +27,7 @@ const char *PDFRipper::s_name = "PDF Ripper v1.0";
 
 const HeaderStruct PDFRipper::s_headers[] = {
 	{"%PDF-1.", 7},
-  {"", 0}
+	{"", 0}
 };
 
 bool PDFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found)

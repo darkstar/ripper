@@ -28,8 +28,8 @@
 const char *BMPRipper::s_name = "BMP Ripper v1.0";
 
 const HeaderStruct BMPRipper::s_headers[] = {
-    {"BM", 2},
-    {"", 0}
+	{"BM", 2},
+	{"", 0}
 };
 
 bool BMPRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found)

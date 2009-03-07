@@ -26,7 +26,7 @@ const char *ICORipper::s_name = "Windows ICO Ripper v1.0";
 
 const HeaderStruct ICORipper::s_headers[] = {
 	{"\0\0\1\0", 4},
-  {"", 0}
+	{"", 0}
 };
 
 #pragma pack(push, 1)

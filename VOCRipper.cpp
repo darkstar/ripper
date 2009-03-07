@@ -25,7 +25,7 @@ const char *VOCRipper::s_name = "Creative VOC Ripper v1.0";
 
 const HeaderStruct VOCRipper::s_headers[] = {
 	{"Creative Voice File\x1a", 20},
-  {"", 0}
+	{"", 0}
 };
 
 #pragma pack(push, 1)

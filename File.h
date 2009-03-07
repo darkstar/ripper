@@ -33,7 +33,7 @@ private:
 	void *m_mapPtr;
 	char *m_fileName;
 	unsigned long m_size;
-  int m_error;
+	int m_error;
 
 public:
 	File(const char *fileName);
@@ -43,7 +43,7 @@ public:
 	virtual bool Close();
 
 	virtual unsigned long getSize() const;
-  virtual const char *getError() const;
+	virtual const char *getError() const;
 };
 
 #endif

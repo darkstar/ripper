@@ -26,7 +26,7 @@ File::File(const char *fileName)
 	m_isOpen = false;
 	m_mapPtr = 0;
 	m_hFile = m_hMapping = INVALID_HANDLE_VALUE;
-  m_error = 0;
+	m_error = 0;
 }
 
 File::~File()
@@ -47,10 +47,10 @@ void *File::Open()
 	// open the file
 	m_hFile = CreateFile(m_fileName, GENERIC_READ, FILE_SHARE_READ, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
 	if (m_hFile ==  INVALID_HANDLE_VALUE)
-  {
-    m_error = 1;
+	{
+		m_error = 1;
 		return 0;
-  }
+	}
 
 	// get file size
 	m_size = SetFilePointer(m_hFile, 0, 0, FILE_END);
@@ -67,13 +67,13 @@ void *File::Open()
 	m_mapPtr = MapViewOfFile(m_hMapping, FILE_MAP_READ, 0, 0, 0);
 	if (!m_mapPtr)
 	{
-    m_error = 3;
+		m_error = 3;
 		CloseHandle(m_hFile);
 		CloseHandle(m_hMapping);
 		return 0;
 	}
 
-  m_error = 0;
+	m_error = 0;
 	m_isOpen = true;
 	return m_mapPtr;
 }
@@ -99,17 +99,17 @@ unsigned long File::getSize() const
 
 const char *File::getError() const
 {
-  switch (m_error)
-  {
-  case 0:
-    return "no error";
-  case 1:
-    return "file not found";
-  case 2:
-    return "cannot create mapping";
-  case 3:
-    return "cannot map file (too big?)";
-  default:
-    return "unknown error";
+	switch (m_error)
+	{
+	case 0:
+		return "no error";
+	case 1:
+		return "file not found";
+	case 2:
+		return "cannot create mapping";
+	case 3:
+		return "cannot map file (too big?)";
+	default:
+		return "unknown error";
   }
 }

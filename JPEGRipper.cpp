@@ -25,7 +25,7 @@ const char *JPEGRipper::s_name = "JFIF/JPG Ripper v1.0beta";
 
 const HeaderStruct JPEGRipper::s_headers[] = {
 	{"\xff\xd8\xff\xe0", 4},
-  {"", 0}
+	{"", 0}
 };
 
 // this needs to be more robust. First we should detect non-JFIF JPEG files (without 0xff 0xe0 marker),

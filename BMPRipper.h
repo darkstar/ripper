@@ -32,18 +32,18 @@ struct BMPHeader
 	WORD bfReserved1;
 	WORD bfReserved2;
 	DWORD bfOffBits;
-  DWORD biHeaderSize;
-  LONG biWidth; 
-  LONG biHeight; 
-  WORD biPlanes; 
-  WORD biBitCount; 
+	DWORD biHeaderSize;
+	LONG biWidth; 
+	LONG biHeight; 
+	WORD biPlanes; 
+	WORD biBitCount; 
 	// all after here is optional (?)
-  DWORD biCompression; 
-  DWORD biSizeImage; 
-  LONG biXPelsPerMeter; 
-  LONG biYPelsPerMeter; 
-  DWORD biClrUsed; 
-  DWORD biClrImportant; 
+	DWORD biCompression; 
+	DWORD biSizeImage; 
+	LONG biXPelsPerMeter; 
+	LONG biYPelsPerMeter; 
+	DWORD biClrUsed; 
+	DWORD biClrImportant; 
 };
 
 #pragma pack(pop)

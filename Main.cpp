@@ -62,8 +62,8 @@ void AddHeaders(Ripper *ripper)
 
 	while (hd->length != 0)
 	{
-    pm->AddPattern(hd, ripper);
-    hd++;
+		pm->AddPattern(hd, ripper);
+		hd++;
 	}
 }
 
@@ -85,13 +85,8 @@ void PrintStatistics()
 {
 	unsigned long secs = (stoptime - starttime) / 1000;
 	fprintf(stderr, "%d MB scanned in %ld seconds, %ld of %ld checks successful (%5.1f%%)\n(%d patterns and %d ripper modules loaded)\n",
-		f->getSize() / (1024*1024),
-		secs,
-		totalCalls - failedCalls,
-		totalCalls,
-		100.0 * (totalCalls - failedCalls)/totalCalls,
-		numHeaders,
-		numRippers);
+		f->getSize() / (1024*1024), secs, totalCalls - failedCalls,  totalCalls, 
+		100.0 * (totalCalls - failedCalls)/totalCalls, numHeaders, numRippers);
 }
 
 void ShowRippers()
@@ -164,9 +159,9 @@ int main(int argc, char *argv[])
 		(*rip)->setupFile(fileBase, fileSize);
 		rip++;
 	}
-  pm->FinalizeMatcher(); // generate fail-functions
+	pm->FinalizeMatcher(); // generate fail-functions
 
-  pm->BeginSearch(); // initialize search state
+	pm->BeginSearch(); // initialize search state
 
 	starttime = GetTickCount();
 
@@ -181,13 +176,13 @@ int main(int argc, char *argv[])
 			fprintf(stderr, "%3d%% done...\r", percent);
 		}
 
-    // Aho-Corasick
-    PatternMatcher::ACNode *q = 0;
-    if (pm->NextByte(*(unsigned char *)(fileBase + pos), &q))
-    {
+		// Aho-Corasick
+		PatternMatcher::ACNode *q = 0;
+		if (pm->NextByte(*(unsigned char *)(fileBase + pos), &q))
+		{
 			totalCalls++;
 			// possible match found
-      if (q->ripper->checkLocation(fileBase + pos - q->header->length + 1, q->header, &fstruct))
+			if (q->ripper->checkLocation(fileBase + pos - q->header->length + 1, q->header, &fstruct))
 			{
 				// found it! save...
 				fprintf(stderr, "found %s at 0x%08x!\n", fstruct.extension, fstruct.startoffset - fileBase);
@@ -199,7 +194,7 @@ int main(int argc, char *argv[])
 			{
 				failedCalls++;
 			}
-    }
+		}
 	}
 	stoptime = GetTickCount();
 

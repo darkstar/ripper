@@ -26,8 +26,8 @@ const char *RIFFRipper::s_name = "RIFF AVI/WAV/ANI/CDR Ripper v1.0";
 
 const HeaderStruct RIFFRipper::s_headers[] = {
 	{"RIFF", 4},
-  {"RIFX", 4},
-  {"", 0}
+	{"RIFX", 4},
+	{"", 0}
 };
 
 #pragma pack(push, 1)

@@ -33,18 +33,18 @@ enum FoundCriterium
 // defines one header to search for
 struct HeaderStruct
 {
-  // the pattern to look for
+	// the pattern to look for
 	char *header;
 
-  // the length of the pattern
+	// the length of the pattern
 	int length;
 
-  // number of bytes in the file _before_ the pattern
-  // (normally this is 0, see MODRipper for an example where it's not)
-  int extra_len_before;
+	// number of bytes in the file _before_ the pattern
+	// (normally this is 0, see MODRipper for an example where it's not)
+	int extra_len_before;
 
-  // even more user data
-  void *user_data;
+	// even more user data
+	void *user_data;
 };
 
 struct FoundStruct
