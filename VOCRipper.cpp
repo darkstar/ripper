@@ -55,7 +55,7 @@ bool VOCRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 	pos2 = pos + hdr->dataOffset;
 
 	blockType = *pos2;
-	while ((blockType != 0) && (pos2 < m_start + m_length))
+	while ((blockType != 0) && (pos2 + 2 < m_start + m_length))
 	{
 		pos2++;
 		// first: read 3 bytes blocklength and skip those
