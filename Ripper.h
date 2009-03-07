@@ -86,4 +86,18 @@ public:
 	virtual bool checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found) = 0;
 };
 
+
+// for smaller .h files implementing ripper modules:
+
+#define IMPLEMENT_DEFAULT_RIPPER_INTERFACE \
+	virtual const HeaderStruct *getHeaders() const \
+	{ \
+		return &s_headers[0]; \
+	} \
+ \
+	virtual const char *getName() const \
+	{ \
+		return s_name; \
+	}
+
 #endif

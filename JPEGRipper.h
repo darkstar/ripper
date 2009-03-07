@@ -39,15 +39,7 @@ public:
 	{
 	};
 
-	virtual const HeaderStruct *getHeaders() const
-	{
-		return &s_headers[0];
-	}
-
-	virtual const char *getName() const
-	{
-		return s_name;
-	}
+	IMPLEMENT_DEFAULT_RIPPER_INTERFACE
 
 	virtual bool checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found);
 };
