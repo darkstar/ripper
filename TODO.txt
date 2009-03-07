@@ -1,0 +1,48 @@
+ToDo:
+
+Small Changes:
+- Optionally write a .log file with all (hex-)offsets of the found files
+
+Major changes:
+- Remove/change "class File" to not map the whole file in memory at once.
+   Jede "Magic Value" hat einen Offset, an dem sie steht. Ist der Offset==-1 dann wird
+   er dynamisch berechnet (vom Ripper).
+   Pseudocode (wenn Match gefunden wurde):
+
+   if (match->offset != -1)
+   {
+     mapping_start = current_position - match->offset;
+     buf_len = min(2gig, file_size - mapping_start);
+     buf = mmap_file(mapping_start, buf_len);
+     ripper->rip(buf, buf_len);
+   } else {
+     // THIS PART IS NOT ESSENTIAL YET.
+     // it might be needed for ZIP file ripping, for example, because ZIP files have
+     // their central directory at the end. However, it might also be possible to
+     // scan ZIP files progressively, like pkzipfix does. In that case we only look 
+     // for the "PK..." header
+     mapping_start = current_position - 1M; // arbitrary value
+     buf_size = 2M
+     buf = mmap_file(mapping_start, buf_size);
+     if (! (dyn_range = ripper->getDynamicStartOffset(buf, buf_len, current_position)))
+       return false;
+     
+     // now map "real" range, as returned by getDynamicStartOffset()
+     mapping_start = current_position - dyn_range->offset;
+     buf_len = min(2gig, file_size - mapping_start);
+     buf = mmap_file(mapping_start, buf_len);
+     ripper->rip(buf, buf_len);
+   }
+
+New Ripper Modules (in order of importance):
+- Microsoft DOC/XLS/... (this is a special chunked file format inofficially called LAOLA which is used by all office programs and some other programs too)
+- PNG (should be easy)
+- OGM (should be straightforward)
+- FLI/FLC should be straightforward but not 100% foolproof (false positives?)
+- more MODULE formats (669, XM, IT, S3M, ULT, DMF, MTM, NST, STM, ...)
+
+Better detection:
+- JPEG (see source code comments)
+- GIF needs more testing, as well as MOD
+- more IFF formats/subtypes?
+- PDF needs more testing to make sure it's foolproof
