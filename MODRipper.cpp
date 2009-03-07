@@ -29,42 +29,42 @@
 const char *MODRipper::s_name = "MOD Ripper v1.0";
 
 const HeaderStruct MODRipper::s_headers[] = {
-		// 4ch 31in
-		{"M.K.", 4, 1080, new ModInfoStruct(4)}, 
-		{"M!K!", 4, 1080, new ModInfoStruct(4)}, 
-		{"FLT4", 4, 1080, new ModInfoStruct(4)}, 
-		{"4CHN", 4, 1080, new ModInfoStruct(4)},
-		// 6ch 31in
-		{"6CHN", 4, 1080, new ModInfoStruct(6)}, 
-		// 8ch 31in
-		{"8CHN", 4, 1080, new ModInfoStruct(8)}, 
-		{"OCTA", 4, 1080, new ModInfoStruct(8)}, 
-		{"FLT8", 4, 1080, new ModInfoStruct(8, 31, true)},
-		{"CD81", 4, 1080, new ModInfoStruct(4)}, 
-		// others :)
-		{"2CHN", 4, 1080, new ModInfoStruct(2)}, 
-		{"TDZ1", 4, 1080, new ModInfoStruct(1)}, 
-		{"TDZ2", 4, 1080, new ModInfoStruct(2)}, 
-		{"TDZ3", 4, 1080, new ModInfoStruct(3)}, 
-		{"5CHN", 4, 1080, new ModInfoStruct(5)}, 
-		{"7CHN", 4, 1080, new ModInfoStruct(7)}, 
-		{"9CHN", 4, 1080, new ModInfoStruct(9)}, 
-		{"10CH", 4, 1080, new ModInfoStruct(10)}, 
-		{"11CH", 4, 1080, new ModInfoStruct(11)}, 
-		{"12CH", 4, 1080, new ModInfoStruct(12)}, 
-		{"13CH", 4, 1080, new ModInfoStruct(13)}, 
-		{"14CH", 4, 1080, new ModInfoStruct(14)}, 
-		{"15CH", 4, 1080, new ModInfoStruct(15)}, 
-		{"16CH", 4, 1080, new ModInfoStruct(16)}, 
-		{"18CH", 4, 1080, new ModInfoStruct(18)}, 
-		{"20CH", 4, 1080, new ModInfoStruct(20)}, 
-		{"22CH", 4, 1080, new ModInfoStruct(22)}, 
-		{"24CH", 4, 1080, new ModInfoStruct(24)}, 
-		{"26CH", 4, 1080, new ModInfoStruct(26)}, 
-		{"28CH", 4, 1080, new ModInfoStruct(28)}, 
-		{"30CH", 4, 1080, new ModInfoStruct(30)}, 
-		{"32CH", 4, 1080, new ModInfoStruct(32)}, 
-		{"", 0}
+	// 4ch 31in
+	{"M.K.", 4, 1080, new ModInfoStruct(4)}, 
+	{"M!K!", 4, 1080, new ModInfoStruct(4)}, 
+	{"FLT4", 4, 1080, new ModInfoStruct(4)}, 
+	{"4CHN", 4, 1080, new ModInfoStruct(4)},
+	// 6ch 31in
+	{"6CHN", 4, 1080, new ModInfoStruct(6)}, 
+	// 8ch 31in
+	{"8CHN", 4, 1080, new ModInfoStruct(8)}, 
+	{"OCTA", 4, 1080, new ModInfoStruct(8)}, 
+	{"FLT8", 4, 1080, new ModInfoStruct(8, 31, true)},
+	{"CD81", 4, 1080, new ModInfoStruct(4)}, 
+	// others :)
+	{"2CHN", 4, 1080, new ModInfoStruct(2)}, 
+	{"TDZ1", 4, 1080, new ModInfoStruct(1)}, 
+	{"TDZ2", 4, 1080, new ModInfoStruct(2)}, 
+	{"TDZ3", 4, 1080, new ModInfoStruct(3)}, 
+	{"5CHN", 4, 1080, new ModInfoStruct(5)}, 
+	{"7CHN", 4, 1080, new ModInfoStruct(7)}, 
+	{"9CHN", 4, 1080, new ModInfoStruct(9)}, 
+	{"10CH", 4, 1080, new ModInfoStruct(10)}, 
+	{"11CH", 4, 1080, new ModInfoStruct(11)}, 
+	{"12CH", 4, 1080, new ModInfoStruct(12)}, 
+	{"13CH", 4, 1080, new ModInfoStruct(13)}, 
+	{"14CH", 4, 1080, new ModInfoStruct(14)}, 
+	{"15CH", 4, 1080, new ModInfoStruct(15)}, 
+	{"16CH", 4, 1080, new ModInfoStruct(16)}, 
+	{"18CH", 4, 1080, new ModInfoStruct(18)}, 
+	{"20CH", 4, 1080, new ModInfoStruct(20)}, 
+	{"22CH", 4, 1080, new ModInfoStruct(22)}, 
+	{"24CH", 4, 1080, new ModInfoStruct(24)}, 
+	{"26CH", 4, 1080, new ModInfoStruct(26)}, 
+	{"28CH", 4, 1080, new ModInfoStruct(28)}, 
+	{"30CH", 4, 1080, new ModInfoStruct(30)}, 
+	{"32CH", 4, 1080, new ModInfoStruct(32)}, 
+	{"", 0}
 };
 
 #pragma pack(push, 1)
@@ -89,10 +89,6 @@ struct PatternTable
 bool MODRipper::IsValidMODSampleHeader(unsigned char *pos, unsigned long *totalSampleSize)
 {
 	SampleHeader *header = (SampleHeader *)pos;
-
-	// first we check if this sample is maybe unused, then it's valid
-//  if (header->name[0] == 0)
-//		return true;
 
 	// check to see if the file name is valid (i.e. ASCII >= 32)
 	for (int i = 0; i < 22; i++)
@@ -134,11 +130,9 @@ bool MODRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 	info = (ModInfoStruct *)(header->user_data);
 
 	// the module ID is at file offset 1080, so we need at least these many bytes BEFORE pos
-//  if (pos - info->m_magic_offset < m_start)
 	if (pos - header->extra_len_before < m_start)
 		return false;
 
-//  modstart = pos - info->m_magic_offset;
 	modstart = pos - header->extra_len_before;
 
 	// check module file name for valid ASCII chars
@@ -180,7 +174,6 @@ bool MODRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 	found->criterium = CRIT_STRONG;
 	strcpy(found->extension, "MOD");
 	found->startoffset = modstart;
-//  found->length = (lastPattern + 1) * patternSize + sampleSize + info->m_magic_offset + 4; // the 4 is the length of the header ID
 	found->length = (lastPattern + 1) * patternSize + sampleSize + header->extra_len_before + 4; // the 4 is the length of the header ID
 
 	return true;
