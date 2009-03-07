@@ -27,7 +27,6 @@ struct ModInfoStruct {
 	int m_channels;
 	int m_instruments;
 	bool m_alt8chn;// for FLT8 -- 2x4 channels instead of 8channels
-	//long m_magic_offset;// start offset of header in file, default 1080
 
 	ModInfoStruct(int channels, int instruments = 31, bool alt8chn = false)
 	{
