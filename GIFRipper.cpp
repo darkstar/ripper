@@ -78,11 +78,6 @@ bool GIFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 
 	pos += 13; // skip the header and screen descriptor
 
-	// set up a simple version check variable
-	/*if (strncmp(hdr->ID, "GIF87a", 6) == 0)
-		version = 87;
-	else
-		version = 89;*/
 	version = (int)(header->user_data);
 
 	// check header for gif89 features in a gif87 image
