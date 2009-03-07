@@ -1,38 +1,23 @@
 ToDo:
 
 Small Changes:
-- Optionally write a .log file with all (hex-)offsets of the found files
+- Optionally write a .log file with all (hex-)offsets of the found files, and with debug info of the modules
 
 Major changes:
 - Remove/change "class File" to not map the whole file in memory at once.
-   Jede "Magic Value" hat einen Offset, an dem sie steht. Ist der Offset==-1 dann wird
-   er dynamisch berechnet (vom Ripper).
-   Pseudocode (wenn Match gefunden wurde):
-
-   if (match->offset != -1)
-   {
-     mapping_start = current_position - match->offset;
-     buf_len = min(2gig, file_size - mapping_start);
-     buf = mmap_file(mapping_start, buf_len);
-     ripper->rip(buf, buf_len);
-   } else {
-     // THIS PART IS NOT ESSENTIAL YET.
-     // it might be needed for ZIP file ripping, for example, because ZIP files have
-     // their central directory at the end. However, it might also be possible to
-     // scan ZIP files progressively, like pkzipfix does. In that case we only look 
-     // for the "PK..." header
-     mapping_start = current_position - 1M; // arbitrary value
-     buf_size = 2M
-     buf = mmap_file(mapping_start, buf_size);
-     if (! (dyn_range = ripper->getDynamicStartOffset(buf, buf_len, current_position)))
-       return false;
-     
-     // now map "real" range, as returned by getDynamicStartOffset()
-     mapping_start = current_position - dyn_range->offset;
-     buf_len = min(2gig, file_size - mapping_start);
-     buf = mmap_file(mapping_start, buf_len);
-     ripper->rip(buf, buf_len);
-   }
+  The input file is read in bytewise (block-buffered) and not memory-mapped as a whole.
+  Only on a possible match is the file then mapped into memory, and the corresponding 
+  ripper module is invoked. The mapping can start at where the pattern is at (optionally
+  X bytes earlier which is specified in the header already and needed for MOD files for example).
+  Need to check if it's not too slow mapping and unmapping the file thousands of times in a row.
+  If it turns out to be too slow, the mappings could be reused on a watermark-based system:
+  on the first HIT, map as much of the file as possible into memory, starting from 
+  current_position - header_offset, and mapping MIN(filesize, 2gb). Then, on a later HIT, check
+  to see if the file is not mapped till the end AND the current position is like 50% into the 
+  mapping (for example at 1g into the mapping for a really huge file). If so, remap with the new
+  current_position - header_offset as base.
+  We also need to check on each HIT whether current_position-header_offset is smaller than the 
+  currently mapped file portion (which can happen if header_offset is >0) and re-map in that case too
 
 New Ripper Modules (in order of importance):
 - Microsoft DOC/XLS/... (this is a special chunked file format inofficially called LAOLA which is used by all office programs and some other programs too)
@@ -40,9 +25,12 @@ New Ripper Modules (in order of importance):
 - OGM (should be straightforward)
 - FLI/FLC should be straightforward but not 100% foolproof (false positives?)
 - more MODULE formats (669, XM, IT, S3M, ULT, DMF, MTM, NST, STM, ...)
+- ZIP files? (detect from the beginning, like pkzipfix)
 
 Better detection:
 - JPEG (see source code comments)
 - GIF needs more testing, as well as MOD
 - more IFF formats/subtypes?
-- PDF needs more testing to make sure it's foolproof
+- PDF needs more testing to make sure it's foolproof (esp. PDF-1.6)
+- DDS needs some more testing, I think it's a bit broken, but I don't have adequat tools to check
+- MP3 needs testing (VBR files at least. LayerI/II files, or MPEG2/2.5 files too, although those should be currently skipped)
