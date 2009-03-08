@@ -257,4 +257,6 @@ bool MODRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 
 		return true;
 	}
+
+	return false;
 }
