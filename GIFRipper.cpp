@@ -93,7 +93,7 @@ bool GIFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 	if (hdr->colormap == 1)
 	{
 		// skip the color map
-		pos += 3 * (1 << (hdr->colorres + 1));
+		pos += 3 * (1 << (hdr->bpp + 1));
 	}
 
 	while ((*pos == ',') || (*pos == '!'))
