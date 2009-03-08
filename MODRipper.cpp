@@ -223,7 +223,7 @@ bool MODRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 	{
 		found->criterium = CRIT_STRONG;
 
-		if (modstart + 0x17f0 >= m_start + m_length)
+		if (modstart + 0x1f0 >= m_start + m_length)
 			return false;
 
 		// check module message for valid ASCII chars
