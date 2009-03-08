@@ -18,6 +18,8 @@ Major changes:
   current_position - header_offset as base.
   We also need to check on each HIT whether current_position-header_offset is smaller than the 
   currently mapped file portion (which can happen if header_offset is >0) and re-map in that case too
+- Make the program 64-bit aware (by changing hardcoded assumptions about sizeof(short) and sizeof(int))
+- Make the program big-endian aware (by wrapping all data accessors in wrapper functions)
 
 New Ripper Modules (in order of importance):
 - Microsoft DOC/XLS/... (this is a special chunked file format inofficially called LAOLA which is used by all office programs and some other programs too)
@@ -26,6 +28,8 @@ New Ripper Modules (in order of importance):
 - FLI/FLC should be straightforward but not 100% foolproof (false positives?)
 - more MODULE formats (669, XM, IT, S3M, ULT, DMF, MTM, NST, STM, ...)
 - ZIP files? (detect from the beginning, like pkzipfix)
+- TIFF, TGA detection
+- Maybe EXE detection? At least MZ/NE/PE headers, probably LE/LX/P3 headers for old games?
 
 Better detection:
 - JPEG (see source code comments)
