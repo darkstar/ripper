@@ -23,13 +23,22 @@
 
 #include "Ripper.h"
 
+enum ModType
+{
+	MT_MOD = 0,
+	MT_669 = 1,
+	MT_S3M = 2,
+};
+
 struct ModInfoStruct {
 	int m_channels;
 	int m_instruments;
 	bool m_alt8chn;// for FLT8 -- 2x4 channels instead of 8channels
+	ModType m_modType;
 
-	ModInfoStruct(int channels, int instruments = 31, bool alt8chn = false)
+	ModInfoStruct(ModType mType, int channels = -1, int instruments = 31, bool alt8chn = false)
 	{
+		m_modType = mType;
 		m_channels = channels;
 		m_instruments = instruments;
 		m_alt8chn = alt8chn;
@@ -44,6 +53,7 @@ private:
 	static const HeaderStruct s_headers[];
 
 	bool IsValidMODSampleHeader(unsigned char *pos, unsigned long *totalSampleSize);
+	bool IsValid669SampleHeader(unsigned char *pos, unsigned long *totalSampleSize);
 
 public:
 	MODRipper()
