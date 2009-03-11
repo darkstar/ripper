@@ -33,6 +33,8 @@ const HeaderStruct GIFRipper::s_headers[] = {
 
 #pragma pack(push, 1)
 
+// bitfields are not portable! 
+// TODO: change to one field and use masks in the code to access the bits
 struct GIFHeader
 {
 	char ID[6]; // the ID
