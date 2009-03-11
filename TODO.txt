@@ -20,6 +20,9 @@ Major changes:
   currently mapped file portion (which can happen if header_offset is >0) and re-map in that case too
 - Make the program 64-bit aware (by changing hardcoded assumptions about sizeof(short) and sizeof(int))
 - Make the program big-endian aware (by wrapping all data accessors in wrapper functions)
+- change the Aho-Corasick algorithm from object-based to table-based, where all "pointers" to the next state
+  are simply indices into the table instead of "real" pointers. Should be a bit faster (esp. for bigger graphs)
+  because of data locality
 
 New Ripper Modules:
 - Microsoft DOC/XLS/... (this is a special chunked file format inofficially called LAOLA which is used by all office programs and some other programs too)
