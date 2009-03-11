@@ -21,31 +21,30 @@
 #ifndef BMP_RIPPER_H
 #define BMP_RIPPER_H
 
+#include "GlobalDefs.h"
 #include "Ripper.h"
 
-#pragma pack(push, 1)
-
+#pragma pack(push,1)
 struct BMPHeader
 {
-	WORD bfType;
-	DWORD bfSize;
-	WORD bfReserved1;
-	WORD bfReserved2;
-	DWORD bfOffBits;
-	DWORD biHeaderSize;
-	LONG biWidth; 
-	LONG biHeight; 
-	WORD biPlanes; 
-	WORD biBitCount; 
+	uint16 bfType;
+	uint32 bfSize;
+	uint16 bfReserved1;
+	uint16 bfReserved2;
+	uint32 bfOffBits;
+	uint32 biHeaderSize;
+	int32 biWidth; 
+	int32 biHeight; 
+	uint16 biPlanes; 
+	uint16 biBitCount; 
 	// all after here is optional (?)
-	DWORD biCompression; 
-	DWORD biSizeImage; 
-	LONG biXPelsPerMeter; 
-	LONG biYPelsPerMeter; 
-	DWORD biClrUsed; 
-	DWORD biClrImportant; 
+	uint32 biCompression; 
+	uint32 biSizeImage; 
+	int32 biXPelsPerMeter; 
+	int32 biYPelsPerMeter; 
+	uint32 biClrUsed; 
+	uint32 biClrImportant; 
 };
-
 #pragma pack(pop)
 
 class BMPRipper : public Ripper

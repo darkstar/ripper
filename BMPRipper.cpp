@@ -20,9 +20,6 @@
 
 #include <cstring>
 
-#define WINDOWS_LEAN_AND_MEAN
-#include <windows.h>
-
 #include "BMPRipper.h"
 
 const char *BMPRipper::s_name = "BMP Ripper v1.0";
