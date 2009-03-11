@@ -85,7 +85,7 @@ bool RIFFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, F
 	else if (strncmp(hdr->format, "CDXA", 4) == 0)
 	{
 		strcpy(found->extension, "STR");
-		found->criterium = CRIT_STRING;
+		found->criterium = CRIT_STRONG;
 	}
 	else
 	{
