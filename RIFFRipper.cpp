@@ -82,6 +82,11 @@ bool RIFFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, F
 		strcpy(found->extension, "RMI");
 		found->criterium = CRIT_STRONG;
 	}
+	else if (strncmp(hdr->format, "CDXA", 4) == 0)
+	{
+		strcpy(found->extension, "STR");
+		found->criterium = CRIT_STRING;
+	}
 	else
 	{
 		return false;  // this generated a lot of false positives
