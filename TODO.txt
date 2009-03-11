@@ -21,7 +21,7 @@ Major changes:
 - Make the program 64-bit aware (by changing hardcoded assumptions about sizeof(short) and sizeof(int))
 - Make the program big-endian aware (by wrapping all data accessors in wrapper functions)
 
-New Ripper Modules (in order of importance):
+New Ripper Modules:
 - Microsoft DOC/XLS/... (this is a special chunked file format inofficially called LAOLA which is used by all office programs and some other programs too)
 - PNG (should be easy)
 - OGM (should be straightforward)
