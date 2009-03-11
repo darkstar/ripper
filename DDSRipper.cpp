@@ -21,6 +21,7 @@
 #include <cstring>
 #include <cstdio>
 
+#include "GlobalDefs.h"
 #include "DDSRipper.h"
 
 const char *DDSRipper::s_name = "DDS Texture Ripper v1.0";
@@ -30,42 +31,41 @@ const HeaderStruct DDSRipper::s_headers[] = {
     {"", 0}
 };
 
-#define DWORD unsigned int
-
 struct DDPIXELFORMAT
 {
-	DWORD dwSize; //	Size of structure. This member must be set to 32.
-	DWORD dwFlags; //	Flags to indicate valid fields. Uncompressed formats will usually use DDPF_RGB to indicate an RGB format, while compressed formats will use DDPF_FOURCC with a four-character code.
-	DWORD dwFourCC; //	This is the four-character code for compressed formats. dwFlags should include DDPF_FOURCC in this case. For DXTn compression, this is set to "DXT1", "DXT2", "DXT3", "DXT4", or "DXT5".
-	DWORD dwRGBBitCount; //	For RGB formats, this is the total number of bits in the format. dwFlags should include DDPF_RGB in this case. This value is usually 16, 24, or 32. For A8R8G8B8, this value would be 32.
-	DWORD dwRBitMask; //
-	DWORD dwGBitMask; //
-	DWORD dwBBitMask; //	For RGB formats, these three fields contain the masks for the red, green, and blue channels. For A8R8G8B8, these values would be 0x00ff0000, 0x0000ff00, and 0x000000ff respectively.
-	DWORD dwRGBAlphaBitMask; //	For RGB formats, this contains the mask for the alpha channel, if any. dwFlags should include DDPF_ALPHAPIXELS in this case. For A8R8G8B8, this value would be 0xff000000.
+	uint32 dwSize; //	Size of structure. This member must be set to 32.
+	uint32 dwFlags; //	Flags to indicate valid fields. Uncompressed formats will usually use DDPF_RGB to indicate an RGB format, while compressed formats will use DDPF_FOURCC with a four-character code.
+	uint32 dwFourCC; //	This is the four-character code for compressed formats. dwFlags should include DDPF_FOURCC in this case. For DXTn compression, this is set to "DXT1", "DXT2", "DXT3", "DXT4", or "DXT5".
+	uint32 dwRGBBitCount; //	For RGB formats, this is the total number of bits in the format. dwFlags should include DDPF_RGB in this case. This value is usually 16, 24, or 32. For A8R8G8B8, this value would be 32.
+	uint32 dwRBitMask; //
+	uint32 dwGBitMask; //
+	uint32 dwBBitMask; //	For RGB formats, these three fields contain the masks for the red, green, and blue channels. For A8R8G8B8, these values would be 0x00ff0000, 0x0000ff00, and 0x000000ff respectively.
+	uint32 dwRGBAlphaBitMask; //	For RGB formats, this contains the mask for the alpha channel, if any. dwFlags should include DDPF_ALPHAPIXELS in this case. For A8R8G8B8, this value would be 0xff000000.
 };
 
 struct DDCAPS2
 {
-	DWORD dwCaps1; //	DDS files should always include DDSCAPS_TEXTURE. If the file contains mipmaps, DDSCAPS_MIPMAP should be set. For any DDS file with more than one main surface, such as a mipmaps, cubic environment map, or volume texture, DDSCAPS_COMPLEX should also be set.
-	DWORD dwCaps2; //	For cubic environment maps, DDSCAPS2_CUBEMAP should be included as well as one or more faces of the map (DDSCAPS2_CUBEMAP_POSITIVEX, DDSCAPS2_CUBEMAP_NEGATIVEX, DDSCAPS2_CUBEMAP_POSITIVEY, DDSCAPS2_CUBEMAP_NEGATIVEY, DDSCAPS2_CUBEMAP_POSITIVEZ, DDSCAPS2_CUBEMAP_NEGATIVEZ). For volume textures, DDSCAPS2_VOLUME should be included.
-	DWORD Reserved[2]; //
+	uint32 dwCaps1; //	DDS files should always include DDSCAPS_TEXTURE. If the file contains mipmaps, DDSCAPS_MIPMAP should be set. For any DDS file with more than one main surface, such as a mipmaps, cubic environment map, or volume texture, DDSCAPS_COMPLEX should also be set.
+	uint32 dwCaps2; //	For cubic environment maps, DDSCAPS2_CUBEMAP should be included as well as one or more faces of the map (DDSCAPS2_CUBEMAP_POSITIVEX, DDSCAPS2_CUBEMAP_NEGATIVEX, DDSCAPS2_CUBEMAP_POSITIVEY, DDSCAPS2_CUBEMAP_NEGATIVEY, DDSCAPS2_CUBEMAP_POSITIVEZ, DDSCAPS2_CUBEMAP_NEGATIVEZ). For volume textures, DDSCAPS2_VOLUME should be included.
+	uint32 Reserved[2]; //
 };
 
 struct DDSURFACEDESC2
 {
-	DWORD dwSize; // == 124
-	DWORD dwFlags; //	Flags to indicate valid fields. Always include DDSD_CAPS, DDSD_PIXELFORMAT, DDSD_WIDTH, DDSD_HEIGHT.
-	DWORD dwHeight; //	Height of the main image in pixels
-	DWORD dwWidth; //	Width of the main image in pixels
-	DWORD dwPitchOrLinearSize; //	For uncompressed formats, this is the number of bytes per scan line (DWORD> aligned) for the main image. dwFlags should include DDSD_PITCH in this case. For compressed formats, this is the total number of bytes for the main image. dwFlags should be include DDSD_LINEARSIZE in this case.
-	DWORD dwDepth; //	For volume textures, this is the depth of the volume. dwFlags should include DDSD_DEPTH in this case.
-	DWORD dwMipMapCount; //	For items with mipmap levels, this is the total number of levels in the mipmap chain of the main image. dwFlags should include DDSD_MIPMAPCOUNT in this case.
-	DWORD dwReserved1[11];
+	uint32 dwSize; // == 124
+	uint32 dwFlags; //	Flags to indicate valid fields. Always include DDSD_CAPS, DDSD_PIXELFORMAT, DDSD_WIDTH, DDSD_HEIGHT.
+	uint32 dwHeight; //	Height of the main image in pixels
+	uint32 dwWidth; //	Width of the main image in pixels
+	uint32 dwPitchOrLinearSize; //	For uncompressed formats, this is the number of bytes per scan line (DWORD> aligned) for the main image. dwFlags should include DDSD_PITCH in this case. For compressed formats, this is the total number of bytes for the main image. dwFlags should be include DDSD_LINEARSIZE in this case.
+	uint32 dwDepth; //	For volume textures, this is the depth of the volume. dwFlags should include DDSD_DEPTH in this case.
+	uint32 dwMipMapCount; //	For items with mipmap levels, this is the total number of levels in the mipmap chain of the main image. dwFlags should include DDSD_MIPMAPCOUNT in this case.
+	uint32 dwReserved1[11];
 	DDPIXELFORMAT ddpfPixelFormat; //	32-byte value that specifies the pixel format structure.
 	DDCAPS2 ddsCaps; //	16-byte value that specifies the capabilities structure.
-	DWORD dwReserved2;
+	uint32 dwReserved2;
 };
 
+// this can be done better (i.e. with simple arithmetic) but I'm too lazy right now to think about it ;-)
 long RoundUp(long i)
 {
 	while (i % 4)
