@@ -21,14 +21,30 @@
 #ifndef FILE_H
 #define FILE_H
 
+#if defined(_MSC_VER)
+
 #define WINDOWS_LEAN_AND_MEAN
 #include <windows.h>
+
+struct FilePrivate
+{
+	HANDLE hFile;
+	HANDLE hMapping;
+};
+
+#elif defined(__GCC__)
+
+// do some GCC magic here
+struct FilePrivate
+{
+};
+
+#endif
 
 class File
 {
 private:
-	HANDLE m_hFile;
-	HANDLE m_hMapping;
+	FilePrivate m_private;
 	bool m_isOpen;
 	void *m_mapPtr;
 	char *m_fileName;
@@ -45,5 +61,6 @@ public:
 	virtual unsigned long getSize() const;
 	virtual const char *getError() const;
 };
+
 
 #endif
