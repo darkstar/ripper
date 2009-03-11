@@ -23,6 +23,12 @@ Major changes:
 - change the Aho-Corasick algorithm from object-based to table-based, where all "pointers" to the next state
   are simply indices into the table instead of "real" pointers. Should be a bit faster (esp. for bigger graphs)
   because of data locality
+- Maybe: change the current system of "strong" or "weak" hit to a continuous one, where each ripper module
+  awards "points" for each header-feature it tests. +1 or -1, depending on whether the feature indicates a
+  good or "bad/weak" file. So a bit-depth of 8/15/16/24/32 bit would award a "+1", while a bit-depth of 13 bits
+  would award "-1" (or even a few "-1"'s). Since we only do +1/-1 in each step we can later calculate a percentage
+  of hits vs. misses, and we could flag e.g. all files with <80% confidence as "weak" and reject all with <40% 
+  confidence.
 
 New Ripper Modules:
 - Microsoft DOC/XLS/... (this is a special chunked file format inofficially called LAOLA which is used by all office programs and some other programs too)
