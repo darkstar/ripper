@@ -10,7 +10,7 @@ Major changes:
   ripper module is invoked. The mapping can start at where the pattern is at (optionally
   X bytes earlier which is specified in the header already and needed for MOD files for example).
   Need to check if it's not too slow mapping and unmapping the file thousands of times in a row.
-  If it turns out to be too slow, the mappings could be reused on a watermark-based system:
+  If it turns out to be too slow, the mappings could be reused on a high-watermark-based system:
   on the first HIT, map as much of the file as possible into memory, starting from 
   current_position - header_offset, and mapping MIN(filesize, 2gb). Then, on a later HIT, check
   to see if the file is not mapped till the end AND the current position is like 50% into the 
@@ -26,8 +26,8 @@ New Ripper Modules:
 - PNG (should be easy)
 - OGM (should be straightforward)
 - FLI/FLC should be straightforward but not 100% foolproof (false positives?)
-- more MODULE formats (669, XM, IT, S3M, ULT, DMF, MTM, NST, STM, ...)
-- ZIP files? (detect from the beginning, like pkzipfix)
+- more MODULE formats (XM, IT, S3M, ULT, DMF, MTM, NST, STM, ...)
+- ZIP files? (detect from the beginning and walk from entry to entry, like pkzipfix)
 - TIFF, TGA detection
 - Maybe EXE detection? At least MZ/NE/PE headers, probably LE/LX/P3 headers for old games?
 
@@ -38,5 +38,5 @@ Better detection:
 - some more 669 testing (expecially extended-669's) 
 - more IFF formats/subtypes?
 - PDF needs more testing to make sure it's foolproof (esp. PDF-1.6)
-- DDS needs some more testing, I think it's a bit broken, but I don't have adequat tools to check
+- DDS needs some more testing, I think it's a bit broken, but I don't have adequate tools to check
 - MP3 needs testing (VBR files at least. LayerI/II files, or MPEG2/2.5 files too, although those should be currently skipped)
