@@ -46,9 +46,9 @@ private:
 	ACNode *rootNode;
 	ACNode *currentNode;
 
-	ACNode *PatternMatcher::GetNode(ACNode *n);
+	ACNode *GetNode(ACNode *n);
 	void DestroyNode(ACNode *node);
-	void PatternMatcher::InitNode(ACNode *n);
+	void InitNode(ACNode *n);
 
 public:
 	PatternMatcher();
