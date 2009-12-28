@@ -30,11 +30,26 @@ enum FoundCriterium
 	CRIT_STRONG = 0x02   // file is almost certainly correct
 };
 
+#define HS_END \
+	{0, 0, 0, 0},
+
+#define HS(h, l) \
+	{h, l, 0, 0},
+
+#define HS_U(h, l, u) \
+	{h, l, 0, u},
+
+#define HS_X(h, l, e) \
+	{h, l, e, 0},
+
+#define HS_F(h, l, e, u) \
+	{h, l, e, u},
+
 // defines one header to search for
 struct HeaderStruct
 {
 	// the pattern to look for
-	char *header;
+	const char *header;
 
 	// the length of the pattern
 	int length;
