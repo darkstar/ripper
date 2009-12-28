@@ -20,6 +20,11 @@
 
 #include <cstdio>
 #include <cstdlib>
+#ifdef linux
+#include <unistd.h>
+#include <cstring>
+#endif
+#include "Time.h"
 #include "File.h"
 #include "Ripper.h"
 #include "PatternMatcher.h"
@@ -84,7 +89,7 @@ void SaveFile(FoundStruct *fstruct)
 void PrintStatistics()
 {
 	unsigned long secs = (stoptime - starttime) / 1000;
-	fprintf(stderr, "%d MB scanned in %ld seconds, %ld of %ld checks successful (%5.1f%%)\n(%d patterns and %d ripper modules loaded)\n",
+	fprintf(stderr, "%ld MB scanned in %ld seconds, %ld of %ld checks successful (%5.1f%%)\n(%d patterns and %d ripper modules loaded)\n",
 		f->getSize() / (1024*1024), secs, totalCalls - failedCalls,  totalCalls, 
 		100.0 * (totalCalls - failedCalls)/totalCalls, numHeaders, numRippers);
 }
@@ -163,7 +168,7 @@ int main(int argc, char *argv[])
 
 	pm->BeginSearch(); // initialize search state
 
-	starttime = GetTickCount();
+	starttime = GetTicks();
 
 	// main ripping loop
 	for (pos = 0; pos < fileSize; pos++)
@@ -173,7 +178,7 @@ int main(int argc, char *argv[])
 		if (newPercent != percent)
 		{
 			percent = newPercent;
-			fprintf(stderr, "%3d%% done...\r", percent);
+			fprintf(stderr, "%3ld%% done...\r", percent);
 		}
 
 		// Aho-Corasick
@@ -196,7 +201,7 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-	stoptime = GetTickCount();
+	stoptime = GetTicks();
 
 	fprintf(stderr, "100.0%% complete. ALL DONE.\n");
 	PrintStatistics();
