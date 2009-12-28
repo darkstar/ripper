@@ -18,50 +18,13 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
-#ifndef FILE_H
-#define FILE_H
+// this is simply a wrapper which #includes the correct File implementation
 
-#if defined(_MSC_VER)
-
-#define WINDOWS_LEAN_AND_MEAN
-#include <windows.h>
-
-struct FilePrivate
-{
-	HANDLE hFile;
-	HANDLE hMapping;
-};
-
-#elif defined(linux)
-
-// do some GCC magic here
-struct FilePrivate
-{
-	int hFile;
-};
-
+#ifdef _MSC_VER
+#include "FileWin32.cpp"
 #endif
 
-class File
-{
-private:
-	FilePrivate m_private;
-	bool m_isOpen;
-	void *m_mapPtr;
-	char *m_fileName;
-	unsigned long m_size;
-	int m_error;
-
-public:
-	File(const char *fileName);
-	virtual ~File();
-
-	virtual void *Open(); // returns Pointer to mmap()ed file
-	virtual bool Close();
-
-	virtual unsigned long getSize() const;
-	virtual const char *getError() const;
-};
-
-
+#ifdef linux
+#include "FileUnix.cpp"
 #endif
+
