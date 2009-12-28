@@ -20,17 +20,18 @@
 
 #include <cstring>
 #include <cstdio>
+#include <cstdlib>
 #include <locale>
 #include "PDFRipper.h"
 
 const char *PDFRipper::s_name = "PDF Ripper v1.0";
 
 const HeaderStruct PDFRipper::s_headers[] = {
-	{"%PDF-1.", 7},
-	{"", 0}
+	HS("%PDF-1.", 7)
+	HS_END
 };
 
-bool PDFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found)
+bool PDFRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*/, FoundStruct *found)
 {
 	char version;
 	unsigned char *scan;

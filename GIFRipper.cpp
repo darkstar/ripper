@@ -26,9 +26,9 @@ using namespace std;
 const char *GIFRipper::s_name = "GIF 87a/89a Ripper v1.0";
 
 const HeaderStruct GIFRipper::s_headers[] = {
-	{"GIF87a", 6, 0, (void *)87},
-	{"GIF89a", 6, 0, (void *)89},
-	{"", 0}
+	HS_F("GIF87a", 6, 0, (void *)87)
+	HS_F("GIF89a", 6, 0, (void *)89)
+	HS_END
 };
 
 #pragma pack(push, 1)

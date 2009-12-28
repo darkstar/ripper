@@ -24,13 +24,13 @@
 const char *JPEGRipper::s_name = "JFIF/JPG Ripper v1.0beta";
 
 const HeaderStruct JPEGRipper::s_headers[] = {
-	{"\xff\xd8\xff\xe0", 4},
-	{"", 0}
+	HS("\xff\xd8\xff\xe0", 4)
+	HS_END
 };
 
 // this needs to be more robust. First we should detect non-JFIF JPEG files (without 0xff 0xe0 marker),
 // and we should detect the EOI marker more robust (i.e. it might appear inside the compressed stream)
-bool JPEGRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found)
+bool JPEGRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*/, FoundStruct *found)
 {
 	static const char ID[] = "JFIF";
 

@@ -19,28 +19,28 @@
 ***********************************************************************/
 
 #include <cstring>
-
+#include "GlobalDefs.h"
 #include "RIFFRipper.h"
 
 const char *RIFFRipper::s_name = "RIFF AVI/WAV/ANI/CDR Ripper v1.0";
 
 const HeaderStruct RIFFRipper::s_headers[] = {
-	{"RIFF", 4},
-	{"RIFX", 4},
-	{"", 0}
+	HS("RIFF", 4)
+	HS("RIFX", 4)
+	HS_END
 };
 
 #pragma pack(push, 1)
 
 struct SimpleRiffHeader {
-	unsigned long RIFF;
-	unsigned long chunksize;
+	uint64 RIFF;
+	uint64 chunksize;
 	char format[4];
 };
 
 #pragma pack(pop)
 
-bool RIFFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found)
+bool RIFFRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*/, FoundStruct *found)
 {
 	SimpleRiffHeader *hdr = (SimpleRiffHeader *)pos;
 

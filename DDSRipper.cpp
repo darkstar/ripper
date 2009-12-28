@@ -27,8 +27,8 @@
 const char *DDSRipper::s_name = "DDS Texture Ripper v1.0";
 
 const HeaderStruct DDSRipper::s_headers[] = {
-	{"DDS ", 4},
-    {"", 0}
+	HS("DDS", 4)
+	HS_END
 };
 
 struct DDPIXELFORMAT
@@ -74,7 +74,7 @@ long RoundUp(long i)
 	return i;
 }
 
-bool DDSRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found)
+bool DDSRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*/, FoundStruct *found)
 {
 	DDSURFACEDESC2 *hd = (DDSURFACEDESC2 *)(pos+4);
 	long w, h;

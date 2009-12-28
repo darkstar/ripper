@@ -29,9 +29,9 @@
 const char *MPEGRipper::s_name = "MPEG Layer 3 Ripper v1.0";
 
 const HeaderStruct MPEGRipper::s_headers[] = {
-	{"\xff\xfb", 2, 0, (void *)0},  // MPEG I Layer III, no CRC
-	{"\xff\xfa", 2, 0, (void *)1},  // MPEG I Layer III, with 16-bit CRC
-	{"", 0}
+	HS_F("\xff\xfb", 2, 0, (void *)0)  // MPEG I Layer III, no CRC
+	HS_F("\xff\xfa", 2, 0, (void *)1)  // MPEG I Layer III, with 16-bit CRC
+	HS_END
 };
 
 static const int MPEG1Layer3Bitrates[] = {

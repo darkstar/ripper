@@ -24,11 +24,11 @@
 const char *RTFRipper::s_name = "RTF Ripper v1.0";
 
 const HeaderStruct RTFRipper::s_headers[] = {
-	{"{\\rtf1\\", 7},
-	{"", 0}
+	HS("{\\rtf1\\", 7)
+	HS_END
 };
 
-bool RTFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found)
+bool RTFRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*/, FoundStruct *found)
 {
 	bool ansi = false;
 	int numbraces = 0;

@@ -29,11 +29,11 @@
 const char *PVRRipper::s_name = "PVR/PVRT/GBIX Ripper v1.0";
 
 const HeaderStruct PVRRipper::s_headers[] = {
-	{ "PVRT", 4 },
-	{ "", 0 }
+	HS("PVRT", 4)
+	HS_END
 };
 
-bool PVRRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found)
+bool PVRRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*/, FoundStruct *found)
 {
 	unsigned char *startpos = pos;
 	unsigned long total_len = 0;

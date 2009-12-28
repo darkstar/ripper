@@ -22,6 +22,7 @@
 #include <cstdio>
 #include <cstdlib>
 
+#include "GlobalDefs.h"
 #include "MODRipper.h"
 
 #define SWAP(x) ((((x) & 0x00ff) << 8) | (((x) & 0xff00) >> 8))
@@ -30,69 +31,69 @@ const char *MODRipper::s_name = "MOD/669 Ripper v1.1";
 
 const HeaderStruct MODRipper::s_headers[] = {
 	// 4ch 31in
-	{"M.K.", 4, 1080, new ModInfoStruct(MT_MOD, 4)}, 
-	{"M!K!", 4, 1080, new ModInfoStruct(MT_MOD, 4)}, 
-	{"FLT4", 4, 1080, new ModInfoStruct(MT_MOD, 4)}, 
-	{"4CHN", 4, 1080, new ModInfoStruct(MT_MOD, 4)},
+	HS_F("M.K.", 4, 1080, new ModInfoStruct(MT_MOD, 4))
+	HS_F("M!K!", 4, 1080, new ModInfoStruct(MT_MOD, 4))
+	HS_F("FLT4", 4, 1080, new ModInfoStruct(MT_MOD, 4))
+	HS_F("4CHN", 4, 1080, new ModInfoStruct(MT_MOD, 4))
 	// 6ch 31in
-	{"6CHN", 4, 1080, new ModInfoStruct(MT_MOD, 6)}, 
+	HS_F("6CHN", 4, 1080, new ModInfoStruct(MT_MOD, 6))
 	// 8ch 31in
-	{"8CHN", 4, 1080, new ModInfoStruct(MT_MOD, 8)}, 
-	{"OCTA", 4, 1080, new ModInfoStruct(MT_MOD, 8)}, 
-	{"FLT8", 4, 1080, new ModInfoStruct(MT_MOD, 8, 31, true)},
-	{"CD81", 4, 1080, new ModInfoStruct(MT_MOD, 4)}, 
+	HS_F("8CHN", 4, 1080, new ModInfoStruct(MT_MOD, 8))
+	HS_F("OCTA", 4, 1080, new ModInfoStruct(MT_MOD, 8))
+	HS_F("FLT8", 4, 1080, new ModInfoStruct(MT_MOD, 8, 31, true))
+	HS_F("CD81", 4, 1080, new ModInfoStruct(MT_MOD, 4))
 	// others :)
-	{"2CHN", 4, 1080, new ModInfoStruct(MT_MOD, 2)}, 
-	{"TDZ1", 4, 1080, new ModInfoStruct(MT_MOD, 1)}, 
-	{"TDZ2", 4, 1080, new ModInfoStruct(MT_MOD, 2)}, 
-	{"TDZ3", 4, 1080, new ModInfoStruct(MT_MOD, 3)}, 
-	{"5CHN", 4, 1080, new ModInfoStruct(MT_MOD, 5)}, 
-	{"7CHN", 4, 1080, new ModInfoStruct(MT_MOD, 7)}, 
-	{"9CHN", 4, 1080, new ModInfoStruct(MT_MOD, 9)}, 
-	{"10CH", 4, 1080, new ModInfoStruct(MT_MOD, 10)}, 
-	{"11CH", 4, 1080, new ModInfoStruct(MT_MOD, 11)}, 
-	{"12CH", 4, 1080, new ModInfoStruct(MT_MOD, 12)}, 
-	{"13CH", 4, 1080, new ModInfoStruct(MT_MOD, 13)}, 
-	{"14CH", 4, 1080, new ModInfoStruct(MT_MOD, 14)}, 
-	{"15CH", 4, 1080, new ModInfoStruct(MT_MOD, 15)}, 
-	{"16CH", 4, 1080, new ModInfoStruct(MT_MOD, 16)}, 
-	{"18CH", 4, 1080, new ModInfoStruct(MT_MOD, 18)}, 
-	{"20CH", 4, 1080, new ModInfoStruct(MT_MOD, 20)}, 
-	{"22CH", 4, 1080, new ModInfoStruct(MT_MOD, 22)}, 
-	{"24CH", 4, 1080, new ModInfoStruct(MT_MOD, 24)}, 
-	{"26CH", 4, 1080, new ModInfoStruct(MT_MOD, 26)}, 
-	{"28CH", 4, 1080, new ModInfoStruct(MT_MOD, 28)}, 
-	{"30CH", 4, 1080, new ModInfoStruct(MT_MOD, 30)}, 
-	{"32CH", 4, 1080, new ModInfoStruct(MT_MOD, 32)}, 
+	HS_F("2CHN", 4, 1080, new ModInfoStruct(MT_MOD, 2))
+	HS_F("TDZ1", 4, 1080, new ModInfoStruct(MT_MOD, 1))
+	HS_F("TDZ2", 4, 1080, new ModInfoStruct(MT_MOD, 2))
+	HS_F("TDZ3", 4, 1080, new ModInfoStruct(MT_MOD, 3))
+	HS_F("5CHN", 4, 1080, new ModInfoStruct(MT_MOD, 5))
+	HS_F("7CHN", 4, 1080, new ModInfoStruct(MT_MOD, 7))
+	HS_F("9CHN", 4, 1080, new ModInfoStruct(MT_MOD, 9))
+	HS_F("10CH", 4, 1080, new ModInfoStruct(MT_MOD, 10))
+	HS_F("11CH", 4, 1080, new ModInfoStruct(MT_MOD, 11))
+	HS_F("12CH", 4, 1080, new ModInfoStruct(MT_MOD, 12))
+	HS_F("13CH", 4, 1080, new ModInfoStruct(MT_MOD, 13))
+	HS_F("14CH", 4, 1080, new ModInfoStruct(MT_MOD, 14))
+	HS_F("15CH", 4, 1080, new ModInfoStruct(MT_MOD, 15))
+	HS_F("16CH", 4, 1080, new ModInfoStruct(MT_MOD, 16))
+	HS_F("18CH", 4, 1080, new ModInfoStruct(MT_MOD, 18))
+	HS_F("20CH", 4, 1080, new ModInfoStruct(MT_MOD, 20))
+	HS_F("22CH", 4, 1080, new ModInfoStruct(MT_MOD, 22))
+	HS_F("24CH", 4, 1080, new ModInfoStruct(MT_MOD, 24))
+	HS_F("26CH", 4, 1080, new ModInfoStruct(MT_MOD, 26))
+	HS_F("28CH", 4, 1080, new ModInfoStruct(MT_MOD, 28))
+	HS_F("30CH", 4, 1080, new ModInfoStruct(MT_MOD, 30))
+	HS_F("32CH", 4, 1080, new ModInfoStruct(MT_MOD, 32))
 	// non-mod file formats
-	{"if", 2, 0, new ModInfoStruct(MT_669)},    // 669 files have embedded channel info
-	{"JN", 2, 0, new ModInfoStruct(MT_669)},
-	{"", 0}
+	HS_F("if", 2, 0, new ModInfoStruct(MT_669))    // 669 files have embedded channel info
+	HS_F("JN", 2, 0, new ModInfoStruct(MT_669))
+	HS_END
 };
 
 #pragma pack(push, 1)
 struct SampleHeader
 {
 	char name[22];
-	unsigned short wordlength;
-	unsigned char finetune;
-	unsigned char volume;
-	unsigned short repeatoffset;
-	unsigned short repeatlength;
+	uint16 wordlength;
+	uint8 finetune;
+	uint8 volume;
+	uint16 repeatoffset;
+	uint16 repeatlength;
 };
 struct SampleHeader669
 {
 	char name[13];
-	unsigned int length;
-	unsigned int loopStart;
-	unsigned int loopEnd;
+	uint32 length;
+	uint32 loopStart;
+	uint32 loopEnd;
 };
 
 struct PatternTable
 {
-	unsigned char songlen;
-	unsigned char songrepeat;
-	unsigned char table[128];
+	uint8 songlen;
+	uint8 songrepeat;
+	uint8 table[128];
 };
 #pragma pack(pop)
 

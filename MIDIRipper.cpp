@@ -30,8 +30,8 @@
 const char *MIDIRipper::s_name = "MIDI Ripper v1.0";
 
 const HeaderStruct MIDIRipper::s_headers[] = {
-	{"MThd", 4},
-    {"", 0}
+	HS("MThd", 4)
+	HS_END
 };
 
 unsigned long MIDIRipper::IsValidChunk(unsigned char *pos)
@@ -57,7 +57,7 @@ unsigned long MIDIRipper::IsValidChunk(unsigned char *pos)
 	return chunksize + 8;
 }
 
-bool MIDIRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found)
+bool MIDIRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*/, FoundStruct *found)
 {
 	unsigned long filesize = 0;
 	unsigned long chunksize = 0;
@@ -81,7 +81,7 @@ bool MIDIRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, F
 		found->criterium = CRIT_STRONG;
 
 	chunksize = IsValidChunk(pos);
-	while (chunksize != ~0)
+	while (chunksize != (unsigned long)~0)
 	{
 		filesize += chunksize;
 		chunksize = IsValidChunk(pos + filesize);

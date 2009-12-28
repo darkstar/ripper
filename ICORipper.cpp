@@ -25,8 +25,8 @@
 const char *ICORipper::s_name = "Windows ICO Ripper v1.0";
 
 const HeaderStruct ICORipper::s_headers[] = {
-	{"\0\0\1\0", 4},
-	{"", 0}
+	HS("\0\0\1\0", 4)
+	HS_END
 };
 
 #pragma pack(push, 1)
@@ -68,7 +68,7 @@ struct LocalHeader
 #define CHECK_POS(x) \
 	if (x > m_start + m_length) return false
 
-bool ICORipper::checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found)
+bool ICORipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*/, FoundStruct *found)
 {
 	int i;
 	unsigned long filesize = 0;

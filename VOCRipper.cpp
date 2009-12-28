@@ -24,8 +24,8 @@
 const char *VOCRipper::s_name = "Creative VOC Ripper v1.0";
 
 const HeaderStruct VOCRipper::s_headers[] = {
-	{"Creative Voice File\x1a", 20},
-	{"", 0}
+	HS("Creative Voice File\x1a", 20)
+	HS_END
 };
 
 #pragma pack(push, 1)
@@ -40,7 +40,7 @@ struct VOCHeader
 
 #pragma pack(pop)
 
-bool VOCRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found)
+bool VOCRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*/, FoundStruct *found)
 {
 	VOCHeader *hdr = (VOCHeader *)pos;
 	unsigned int blockLength;
