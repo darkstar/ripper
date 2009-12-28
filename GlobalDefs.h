@@ -37,8 +37,17 @@ typedef signed __int32 int32;
 typedef unsigned __int64 uint64;
 typedef signed __int64 int64;
 
-#elif(__GCC__)
+#elif(linux)
 // GCC defines go here
+#include <stdint.h>
+typedef uint8_t uint8;
+typedef int8_t int8;
+typedef uint16_t uint16;
+typedef int16_t int16;
+typedef uint32_t uint32;
+typedef int32_t int32;
+typedef uint64_t uint64;
+typedef int64_t int64;
 
 #endif
 
