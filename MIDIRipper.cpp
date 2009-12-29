@@ -24,8 +24,13 @@
 
 #include "MIDIRipper.h"
 
+/* TODO: Make this endian-safe! */
+
 #define SWAP_BYTES(a) \
 	((((a)>>24)&0xFF) | (((a)>>8)&0xFF00) | (((a)<<8)&0xFF0000) | (((a)<<24)&0xFF000000)) 
+
+#define SWAP_BYTES2(a) \
+	((((a)>>8)&0xff00)|(((a)<<8)&0x00ff))
 
 const char *MIDIRipper::s_name = "MIDI Ripper v1.0";
 
@@ -75,6 +80,7 @@ bool MIDIRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header
 
 	// check if we have a valid MIDI format (0, 1 or 2)
 	format = *((unsigned short *)(pos + 8));
+	format = SWAP_BYTES2(format);
 	if (format > 2)
 		found->criterium = CRIT_WEAK;
 	else
