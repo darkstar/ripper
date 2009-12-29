@@ -5,4 +5,7 @@ cmake_install.cmake
 Makefile
 ripper
 Config.h
-
+examples/
+RIPPED*
+*.tar
+*.zip
