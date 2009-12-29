@@ -7,6 +7,7 @@ check_include_file_cxx(sys/time.h HAVE_SYS_TIME_H)
 
 SET(OBJSOURCES	Main.cpp
 		File.cpp
+		Time.cpp
 		BMPRipper.cpp
 		DDSRipper.cpp
 		GIFRipper.cpp

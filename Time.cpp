@@ -29,19 +29,19 @@
 #endif
 
 #ifdef _MSC_VER
-int64 GetTicks()
+uint64 GetTicks()
 {
   return GetTickCount();
-}
+};
 #endif
 
 #ifdef linux
-int64 GetTicks()
+uint64 GetTicks()
 {
   struct timeval tv;
 
   gettimeofday(&tv, 0);
-  return tv->tv_sec*1000000 + tv->tv_usec;
-}
+  return tv.tv_sec*1000000 + tv.tv_usec;
+};
 #endif
 
