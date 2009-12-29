@@ -46,11 +46,11 @@ class File
 {
 private:
 	FilePrivate m_private;
-	bool m_isOpen;
 	void *m_mapPtr;
 	char *m_fileName;
 	unsigned long m_size;
 	int m_error;
+	bool m_isOpen;
 
 public:
 	File(const char *fileName);

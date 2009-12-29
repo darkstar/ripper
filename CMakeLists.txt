@@ -27,6 +27,6 @@ SET(OBJSOURCES	Main.cpp
 		VOCRipper.cpp)
 
 ADD_EXECUTABLE(ripper ${OBJSOURCES})
-SET_TARGET_PROPERTIES(ripper PROPERTIES COMPILE_FLAGS "-Wall -Wextra -Werror -g -pipe")
+SET_TARGET_PROPERTIES(ripper PROPERTIES COMPILE_FLAGS "-Wall -Wabi -Woverloaded-virtual -Wextra -Werror -g -pipe")
 CONFIGURE_FILE(Config.h.in Config.h)
 

@@ -64,9 +64,6 @@ struct HeaderStruct
 
 struct FoundStruct
 {
-	// proposed extension for this file
-	char extension[10];
-
 	// the start offset where the file begins
 	unsigned char *startoffset;
 
@@ -75,6 +72,9 @@ struct FoundStruct
 
 	// how sure are we that we have the expected file?
 	FoundCriterium criterium;
+
+	// proposed extension for this file
+	char extension[10];
 };
 
 class Ripper
