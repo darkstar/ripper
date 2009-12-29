@@ -1,7 +1,6 @@
 ToDo:
 
 Immediate tasks:
-- Port File class to linux
 - Change file access to read the source file sequentially (without a File object) and map the file into memory
   on a successful match. This will result in lots of mappings so it should only be done for files > 1g or so
   For a REAL solution, see below.
