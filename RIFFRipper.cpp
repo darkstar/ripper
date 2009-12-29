@@ -40,6 +40,14 @@ struct SimpleRiffHeader {
 
 #pragma pack(pop)
 
+bool RIFFRipper::checkCompileAssertions()
+{
+	if (sizeof(SimpleRiffHeader) != 20)
+		return false;
+
+	return true;
+}
+
 bool RIFFRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*/, FoundStruct *found)
 {
 	SimpleRiffHeader *hdr = (SimpleRiffHeader *)pos;
