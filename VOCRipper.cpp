@@ -73,7 +73,7 @@ bool VOCRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 		return false;
 
 	found->criterium = CRIT_STRONG;
-	strcpy(found->extension, "VOC");
+	strcpy(found->extension, "voc");
 	found->startoffset = pos;
 	found->length = pos2 - pos + 1;
 

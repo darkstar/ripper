@@ -69,7 +69,7 @@ bool BMPRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 	if (hdr->biPlanes != 1)
 		found->criterium = CRIT_WEAK;
 
-	strcpy(found->extension, "BMP");
+	strcpy(found->extension, "bmp");
 	found->startoffset = pos;
 	found->length = hdr->bfSize;
 	return true;

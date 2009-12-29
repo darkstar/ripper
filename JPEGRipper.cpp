@@ -38,7 +38,7 @@ bool JPEGRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header
 		return false;
 
 	found->criterium = CRIT_STRONG;
-	strcpy(found->extension, "JPG");
+	strcpy(found->extension, "jpg");
 	found->startoffset = pos;
 
 	pos += 10;

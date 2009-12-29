@@ -147,7 +147,7 @@ bool ICORipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 
 	found->startoffset = pos;
 	found->length = filesize;
-	strcpy(found->extension, "ICO");
+	strcpy(found->extension, "ico");
 	found->criterium = CRIT_STRONG;
 	return true;
 }

@@ -76,7 +76,7 @@ bool PVRRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 		&& (type2 != 9) && (type2 != 16) && (type2 != 17))
 		found->criterium = CRIT_WEAK;
 
-	strcpy(found->extension, "PVR");
+	strcpy(found->extension, "pvr");
 	found->startoffset = startpos;
 	found->length = total_len;
 

@@ -34,7 +34,7 @@ bool RTFRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 	int numbraces = 0;
 
 	found->criterium = CRIT_STRONG;
-	strcpy(found->extension, "RTF");
+	strcpy(found->extension, "rtf");
 	found->startoffset = pos;
 
 	if (strncmp((char *)pos + 7, "ansi\\", 5) == 0)

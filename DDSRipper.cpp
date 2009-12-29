@@ -186,7 +186,7 @@ bool DDSRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 
 	found->length += datasize;
 
-	strcpy(found->extension, "DDS");
+	strcpy(found->extension, "dds");
 
 	return true;
 }

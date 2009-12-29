@@ -62,37 +62,37 @@ bool RIFFRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header
 
 	if (strncmp(hdr->format, "WAVE", 4) == 0)
 	{
-		strcpy(found->extension, "WAV");
+		strcpy(found->extension, "wav");
 		found->criterium = CRIT_STRONG;
 	}
 	else if (strncmp(hdr->format, "AVI ", 4) == 0)
 	{
-		strcpy(found->extension, "AVI");
+		strcpy(found->extension, "avi");
 		found->criterium = CRIT_STRONG;
 	}
 	else if (strncmp(hdr->format, "ACON", 4) == 0)
 	{
-		strcpy(found->extension, "ANI");
+		strcpy(found->extension, "ani");
 		found->criterium = CRIT_STRONG;
 	}
 	else if (strncmp(hdr->format, "CDRA", 4) == 0)
 	{
-		strcpy(found->extension, "CDR");
+		strcpy(found->extension, "cdr");
 		found->criterium = CRIT_STRONG;
 	}
 	else if (strncmp(hdr->format, "PAL ", 4) == 0)
 	{
-		strcpy(found->extension, "PAL");
+		strcpy(found->extension, "pal");
 		found->criterium = CRIT_STRONG;
 	}
 	else if (strncmp(hdr->format, "RMID", 4) == 0)
 	{
-		strcpy(found->extension, "RMI");
+		strcpy(found->extension, "rmi");
 		found->criterium = CRIT_STRONG;
 	}
 	else if (strncmp(hdr->format, "CDXA", 4) == 0)
 	{
-		strcpy(found->extension, "STR");
+		strcpy(found->extension, "str");
 		found->criterium = CRIT_STRONG;
 	}
 	else

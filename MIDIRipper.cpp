@@ -94,7 +94,7 @@ bool MIDIRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header
 	}
 
 	found->startoffset = pos;
-	strcpy(found->extension, "MID");
+	strcpy(found->extension, "mid");
 	found->length = filesize;
 
 	return true;

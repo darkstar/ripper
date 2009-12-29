@@ -79,27 +79,27 @@ bool IFFRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 
 	if (strncmp((char *)secondaryHeader1, "ILBM", 4) == 0)
 	{
-		strcpy(found->extension, "LBM");
+		strcpy(found->extension, "lbm");
 	}
 	else if (strncmp((char *)secondaryHeader1, "PBM ", 4) == 0)
 	{
-		strcpy(found->extension, "LBM");
+		strcpy(found->extension, "lbm");
 	}
 	else if (strncmp((char *)secondaryHeader1, "AIFF", 4) == 0)
 	{
-		strcpy(found->extension, "AIFF");
+		strcpy(found->extension, "aiff");
 	}
 	else if (strncmp((char *)secondaryHeader1, "8SVX", 4) == 0)
 	{
-		strcpy(found->extension, "8SV");
+		strcpy(found->extension, "8sv");
 	}
 	else if ((strncmp((char *)secondaryHeader1, "XDIR", 4) == 0) && (strncmp((char *)secondaryHeader2, "XMID", 4) == 0))
 	{
-		strcpy(found->extension, "XMI");
+		strcpy(found->extension, "xmi");
 	}
 	else
 	{
-		strcpy(found->extension, "IFF");
+		strcpy(found->extension, "iff");
 	}
 
 	return true;

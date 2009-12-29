@@ -228,7 +228,7 @@ bool MODRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 		// are detected a few bytes (<16 noticed so far) too short. dunno why. both were
 		// 6CHN files from Terminal Velocity
 		found->criterium = CRIT_STRONG;
-		strcpy(found->extension, "MOD");
+		strcpy(found->extension, "mod");
 		found->startoffset = modstart;
 		found->length = (lastPattern + 1) * patternSize + sampleSize + header->extra_len_before + 4; // the 4 is the length of the header ID
 

@@ -93,7 +93,7 @@ bool GIFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 	// setup default values
 	found->criterium = CRIT_STRONG;
 	found->startoffset = pos;
-	strcpy(found->extension, "GIF");
+	strcpy(found->extension, "gif");
 
 	hdr = (GIFHeader *)pos;
 

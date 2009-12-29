@@ -41,7 +41,7 @@ bool PDFRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 
 	found->startoffset = pos;
 	found->criterium = CRIT_STRONG;
-	strcpy(found->extension, "PDF");
+	strcpy(found->extension, "pdf");
 
 	// get the version: "%PDF-1.x" ==> x
 	version = *((char *)pos + 7);
