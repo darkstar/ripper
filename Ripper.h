@@ -99,6 +99,14 @@ public:
 
 	// check if this offset really contains a valid file
 	virtual bool checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found) = 0;
+
+	// this can be used to check the size of some structs, to see whether compilation bugs arise
+	// the default just returns true, subclasses should overload this and return false if something went
+	// wrong. The main program will then abort and print a message
+	virtual bool checkCompileAssertions()
+	{
+		return true;
+	}
 };
 
 

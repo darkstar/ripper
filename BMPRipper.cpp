@@ -75,3 +75,13 @@ bool BMPRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 	return true;
 }
 
+bool BMPRipper::checkCompileAssertions()
+{
+	if (sizeof(BMPHeader) != 54)
+	{
+		return false;
+	}
+
+	return true;
+}
+

@@ -136,6 +136,16 @@ int main(int argc, char *argv[])
 
 	rippers[numRippers] = 0; // terminate list
 
+	/* check compile time assertions */
+	for (int i = 0; i < numRippers; i++)
+	{
+		if (!rippers[i]->checkCompileAssertions())
+		{
+			fprintf(stderr, "Compile time assert failed for ripper %s\n", rippers[i]->getName());
+			_exit(23);
+		}
+	}
+
 	fprintf(stderr, "Ripper v1.0 (C) 2005 by Darkstar <darkstar@drueing.de>\n\n");
 	if (argc != 2)
 	{

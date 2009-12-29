@@ -190,3 +190,18 @@ bool DDSRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 
 	return true;
 }
+
+bool DDSRipper::checkCompileAssertions()
+{
+	if (sizeof(DDPIXELFORMAT) != 32)
+		return false;
+
+	if (sizeof(DDCAPS2) != 16)
+		return false;
+
+	if (sizeof(DDSURFACEDESC2) != 76 + 16 + 32)
+		return false;
+
+	return true;
+}
+
