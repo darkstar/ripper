@@ -162,12 +162,12 @@ int main(int argc, char *argv[])
 	fileBase = (unsigned char *)f->Open();
 	if (!fileBase)
 	{
-    fprintf(stderr, "Error opening file %s: %s\n", argv[1], f->getError());
+		fprintf(stderr, "Error opening file %s: %s\n", argv[1], f->getError());
 		_exit(2);
 	}
 	fileSize = f->getSize();
 
-  // new: initialize Aho-Corasick search algorithm
+	// new: initialize Aho-Corasick search algorithm
 	rip = rippers;
 	while (*rip)
 	{
