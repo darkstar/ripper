@@ -113,6 +113,7 @@ public:
 // for smaller .h files implementing ripper modules:
 
 #define IMPLEMENT_DEFAULT_RIPPER_INTERFACE \
+public: \
 	virtual const HeaderStruct *getHeaders() const \
 	{ \
 		return &s_headers[0]; \
