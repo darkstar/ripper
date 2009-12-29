@@ -37,7 +37,7 @@ struct FilePrivate
 // do some GCC magic here
 struct FilePrivate
 {
-	int hFile;
+	int fd;
 };
 
 #endif
