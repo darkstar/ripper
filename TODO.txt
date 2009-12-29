@@ -4,6 +4,7 @@ Immediate tasks:
 - Change file access to read the source file sequentially (without a File object) and map the file into memory
   on a successful match. This will result in lots of mappings so it should only be done for files > 1g or so
   For a REAL solution, see below.
+- make GIFRipper portable by *not* using bitfield variables (they are evil ;-)
 
 Small Changes:
 - Optionally write a .log file with all (hex-)offsets of the found files, and with debug info of the modules
