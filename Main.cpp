@@ -18,11 +18,12 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
+#include "Config.h"
 #include <cstdio>
 #include <cstdlib>
-#ifdef linux
-#include <unistd.h>
 #include <cstring>
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
 #endif
 #include "Time.h"
 #include "File.h"

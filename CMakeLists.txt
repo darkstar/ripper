@@ -4,6 +4,8 @@ INCLUDE(CheckIncludeFileCXX)
 
 check_include_file_cxx(unistd.h HAVE_UNISTD_H)
 check_include_file_cxx(sys/time.h HAVE_SYS_TIME_H)
+check_include_file_cxx(sys/fcntl.h HAVE_SYS_FCNTL_H)
+check_include_file_cxx(sys/mman.h HAVE_SYS_MMAN_H)
 
 SET(OBJSOURCES	Main.cpp
 		File.cpp

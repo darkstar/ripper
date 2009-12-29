@@ -18,11 +18,18 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
+#include "Config.h"
 #include <cstring>
 #include <cstdlib>
+#ifdef HAVE_UNISTD_H
 #include <unistd.h>
+#endif
+#ifdef HAVE_SYS_MMAN_H
 #include <sys/mman.h>
+#endif
+#ifdef HAVE_SYS_FCNTL_H
 #include <sys/fcntl.h>
+#endif
 #include "File.h"
 
 // UNIX implementation of File class

@@ -18,13 +18,14 @@
 * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ***********************************************************************/
 
+#include "Config.h"
 #include "Time.h"
 
 #ifdef _MSC_VER
 #include <windows.h>
 #endif
 
-#ifdef linux
+#ifdef HAVE_SYS_TIME_H
 #include <sys/time.h>
 #endif
 
