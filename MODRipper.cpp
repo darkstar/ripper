@@ -97,6 +97,20 @@ struct PatternTable
 };
 #pragma pack(pop)
 
+bool MODRipper::checkCompileAssertions()
+{
+	if (sizeof(SampleHeader) != 30)
+		return false;
+
+	if (sizeof(SampleHeader669) != 25)
+		return false;
+	
+	if (sizeof(PatternTable) != 130)
+		return false;
+
+	return true;
+}
+
 bool MODRipper::IsValidMODSampleHeader(unsigned char *pos, unsigned long *totalSampleSize)
 {
 	SampleHeader *header = (SampleHeader *)pos;

@@ -67,6 +67,8 @@ public:
 	IMPLEMENT_DEFAULT_RIPPER_INTERFACE
 
 	virtual bool checkLocation(unsigned char *pos, const HeaderStruct *header, FoundStruct *found);
+
+	virtual bool checkCompileAssertions();
 };
 
 #endif
