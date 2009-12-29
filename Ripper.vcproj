@@ -192,6 +192,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\File.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\FileWin32.cpp"
 				>
 			</File>
@@ -245,6 +249,10 @@
 			</File>
 			<File
 				RelativePath=".\RTFRipper.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Time.cpp"
 				>
 			</File>
 			<File
@@ -323,6 +331,10 @@
 			</File>
 			<File
 				RelativePath=".\RTFRipper.h"
+				>
+			</File>
+			<File
+				RelativePath=".\Time.h"
 				>
 			</File>
 			<File
