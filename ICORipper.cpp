@@ -20,6 +20,7 @@
 
 #include <cstring>
 
+#include "GlobalDefs.h"
 #include "ICORipper.h"
 
 const char *ICORipper::s_name = "Windows ICO Ripper v1.0";
@@ -32,41 +33,55 @@ const HeaderStruct ICORipper::s_headers[] = {
 #pragma pack(push, 1)
 struct GlobalHeader
 {
-	unsigned long id; // \0\0\1\0
-	unsigned short count; // number of icons in this file
+	uint32 id; // \0\0\1\0
+	uint16 count; // number of icons in this file
 };
 
 struct EntryHeader
 {
-	unsigned char width;
-	unsigned char height;
-	unsigned char colors;
-	unsigned char reserved;
-	unsigned short planes;
-	unsigned short bitcount;
-	unsigned long size;
-	unsigned long offset;
+	uint8 width;
+	uint8 height;
+	uint8 colors;
+	uint8 reserved;
+	uint16 planes;
+	uint16 bitcount;
+	uint32 size;
+	uint32 offset;
 };
 
 struct LocalHeader
 {
-	unsigned long size;
-	unsigned long width;
-	unsigned long height;
-	unsigned short planes;
-	unsigned short bitcount;
-	unsigned long compression;
-	unsigned long imagesize;
-	unsigned long xdpi;
-	unsigned long ydpi;
-	unsigned long colorsused;
-	unsigned long colorsimportant;
+	uint32 size;
+	uint32 width;
+	uint32 height;
+	uint16 planes;
+	uint16 bitcount;
+	uint32 compression;
+	uint32 imagesize;
+	uint32 xdpi;
+	uint32 ydpi;
+	uint32 colorsused;
+	uint32 colorsimportant;
 };
 #pragma pack(pop)
 
 // to check if we're still inside the file limits
 #define CHECK_POS(x) \
 	if (x > m_start + m_length) return false
+
+bool ICORipper::checkCompileAssertions()
+{
+	if (sizeof(GlobalHeader) != 6)
+	  	return false;
+
+	if (sizeof(EntryHeader) != 16)
+		return false;
+
+	if (sizeof(LocalHeader) != 40)
+		return false;
+
+	return true;
+}
 
 bool ICORipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*/, FoundStruct *found)
 {
