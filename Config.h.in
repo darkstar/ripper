@@ -1,0 +1,8 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#cmakedefine HAVE_UNISTD_H
+#cmakedefine HAVE_SYS_TIME_H
+
+#endif
+

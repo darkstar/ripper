@@ -26,4 +26,5 @@ SET(OBJSOURCES	Main.cpp
 
 ADD_EXECUTABLE(ripper ${OBJSOURCES})
 SET_TARGET_PROPERTIES(ripper PROPERTIES COMPILE_FLAGS "-Wall -Wextra -Werror -g -pipe")
+CONFIGURE_FILE(Config.h.in Config.h)
 
