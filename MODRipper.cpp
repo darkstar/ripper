@@ -263,6 +263,11 @@ bool MODRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 				return false;
 		}
 
+		// another check to reduce false positives: the total sample data should be >0 bytes
+		// TODO: probably it should even be >512 bytes for example, see if that makes a difference
+		if (sampleSize == 0)
+			return false;
+
 		if (modstart + 0x1f1 + (numSamples * 0x19) + (numPatterns * 0x600) + sampleSize > m_start + m_length)
 			return false;
 
