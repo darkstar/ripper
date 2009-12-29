@@ -56,7 +56,7 @@ private:
 	bool IsValid669SampleHeader(unsigned char *pos, unsigned long *totalSampleSize);
 
 public:
-	MODRipper()
+	MODRipper() : Ripper()
 	{
 	}
 

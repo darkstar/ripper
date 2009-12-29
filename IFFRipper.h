@@ -33,7 +33,7 @@ private:
 	bool validChunkName(unsigned char *pos);
 
 public:
-	IFFRipper()
+	IFFRipper() : Ripper()
 	{
 	}
 

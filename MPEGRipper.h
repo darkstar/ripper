@@ -31,7 +31,7 @@ private:
 	static const HeaderStruct s_headers[];
 
 public:
-	MPEGRipper()
+	MPEGRipper() : Ripper()
 	{
 	}
 

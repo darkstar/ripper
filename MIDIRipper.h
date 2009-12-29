@@ -33,7 +33,7 @@ private:
 	unsigned long IsValidChunk(unsigned char *pos);
 
 public:
-	MIDIRipper()
+	MIDIRipper() : Ripper()
 	{
 	}
 

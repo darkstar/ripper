@@ -55,7 +55,7 @@ private:
 	static const HeaderStruct s_headers[];
 
 public:
-	BMPRipper()
+	BMPRipper() : Ripper()
 	{
 	};
 
