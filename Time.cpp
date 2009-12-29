@@ -32,7 +32,7 @@
 #ifdef _MSC_VER
 uint64 GetTicks()
 {
-  return GetTickCount();
+  return 1000*GetTickCount();
 };
 #endif
 

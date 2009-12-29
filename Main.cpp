@@ -89,7 +89,7 @@ void SaveFile(FoundStruct *fstruct)
 
 void PrintStatistics()
 {
-	unsigned long secs = (stoptime - starttime) / 1000;
+	unsigned long secs = (stoptime - starttime) / 1000000;
 	fprintf(stderr, "%ld MB scanned in %ld seconds, %ld of %ld checks successful (%5.1f%%)\n(%d patterns and %d ripper modules loaded)\n",
 		f->getSize() / (1024*1024), secs, totalCalls - failedCalls,  totalCalls, 
 		100.0 * (totalCalls - failedCalls)/totalCalls, numHeaders, numRippers);
