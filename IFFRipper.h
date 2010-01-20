@@ -1,5 +1,5 @@
 /***********************************************************************
-* Copyright 2007 Michael Drueing <michael@drueing.de>
+* Copyright 2007-2010 Michael Drueing <michael@drueing.de>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as
@@ -30,7 +30,7 @@ private:
 
 	static const HeaderStruct s_headers[];
 
-	bool validChunkName(unsigned char *pos);
+	bool validChunkName(unsigned char *pos, unsigned char *end);
 
 public:
 	IFFRipper() : Ripper()

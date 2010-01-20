@@ -1,5 +1,5 @@
 /***********************************************************************
-* Copyright 2007 Michael Drueing <michael@drueing.de>
+* Copyright 2007-2010 Michael Drueing <michael@drueing.de>
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public License as
@@ -35,8 +35,10 @@ const HeaderStruct IFFRipper::s_headers[] = {
 #define ISOTHER(x) ((x) == ' ')
 #define ISVALID(x) (ISNUMBER(x) || ISUPPER(x) || ISOTHER(x))
 
-bool IFFRipper::validChunkName(unsigned char *pos)
+bool IFFRipper::validChunkName(unsigned char *pos, unsigned char *end)
 {
+	if (pos + 3 >= end)
+		return false;
 	return ISVALID(pos[0]) && ISVALID(pos[1]) && ISVALID(pos[2]) && ISVALID(pos[3]);
 };
 
@@ -64,12 +66,16 @@ bool IFFRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 		if (pos + form_size + 8 > m_start + m_length)
 			return false;
 
+		// arbitrary 1G limit on FORM sizes, should be replaced by better sanity checks elsewhere
+		if (form_size > 1000000000)
+			return false;
+
 		// the end of this chunk
 		pos += form_size + 8;
 		found->length += form_size + 8;
 
 		// we're at the end if we either have no valid chunk name or found another FORM chunk (next file)
-		if ( (!validChunkName(pos)) || (strncmp((char *)pos, "FORM", 4) == 0))
+		if ( (!validChunkName(pos, m_start + m_length)) || (strncmp((char *)pos, "FORM", 4) == 0))
 		{
 			endReached = true;
 		}
