@@ -30,8 +30,8 @@ const HeaderStruct RIFFRipper::s_headers[] = {
 #pragma pack(push, 1)
 
 struct SimpleRiffHeader {
-	uint64 RIFF;
-	uint64 chunksize;
+	uint32 RIFF;
+	uint32 chunksize;
 	char format[4];
 };
 
@@ -39,7 +39,7 @@ struct SimpleRiffHeader {
 
 bool RIFFRipper::checkCompileAssertions()
 {
-	if (sizeof(SimpleRiffHeader) != 20)
+	if (sizeof(SimpleRiffHeader) != 12)
 		return false;
 
 	return true;
