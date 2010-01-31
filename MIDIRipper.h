@@ -27,7 +27,7 @@ private:
 
 	static const HeaderStruct s_headers[];
 
-	unsigned long IsValidChunk(unsigned char *pos);
+	unsigned long IsValidChunk(unsigned char *pos, bool allowMThd);
 
 public:
 	MIDIRipper() : Ripper()

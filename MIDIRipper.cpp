@@ -36,7 +36,7 @@ const HeaderStruct MIDIRipper::s_headers[] = {
 	HS_END
 };
 
-unsigned long MIDIRipper::IsValidChunk(unsigned char *pos)
+unsigned long MIDIRipper::IsValidChunk(unsigned char *pos, bool allowMThd)
 {
 	unsigned long chunksize;
 
@@ -49,6 +49,13 @@ unsigned long MIDIRipper::IsValidChunk(unsigned char *pos)
 	{
 		if (!isalnum(pos[i]))
 			return ~0;
+	}
+
+	// if the first 4 bytes spell "MThd" then we're actually at the start of a new file
+	// (this happens when MIDI files are concatenated without padding inbetween)
+	if (!allowMThd && (strncmp((char *)pos, "MThd", 4) == 0))
+	{
+		return ~0;
 	}
 
 	// treat the next 4 bytes as unsigned long and see if they stil point inside the file
@@ -83,11 +90,12 @@ bool MIDIRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header
 	else
 		found->criterium = CRIT_STRONG;
 
-	chunksize = IsValidChunk(pos);
+	// the first chunk is allowed to be "MThd"
+	chunksize = IsValidChunk(pos, true);
 	while (chunksize != (unsigned long)~0)
 	{
 		filesize += chunksize;
-		chunksize = IsValidChunk(pos + filesize);
+		chunksize = IsValidChunk(pos + filesize, false);
 	}
 
 	found->startoffset = pos;
