@@ -6,5 +6,7 @@
 #cmakedefine HAVE_SYS_MMAN_H
 #cmakedefine HAVE_SYS_FCNTL_H
 
+#cmakedefine HAVE_MADVISE
+
 #endif
 

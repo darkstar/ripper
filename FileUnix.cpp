@@ -74,6 +74,11 @@ void *File::Open()
 	  return 0;
 	}
 
+#ifdef HAVE_MADVISE
+	// use madvise() if available to optimize kernel paging
+	madvise(m_mapPtr, m_size, MADV_SEQUENTIAL);
+#endif
+
 	m_isOpen = true;
 	return m_mapPtr;
 }
