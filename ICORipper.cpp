@@ -92,6 +92,7 @@ bool ICORipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 	if (gheader->count == 0)
 		return false;
 
+	found->criterium = CRIT_STRONG;
 	for (i = 0; i < gheader->count; i++)
 	{
 		CHECK_POS(curPos);
@@ -135,7 +136,7 @@ bool ICORipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 			return false;
 		if ((lheader->compression != 0) || (lheader->xdpi != 0) ||
 			(lheader->ydpi != 0) || (lheader->colorsused != 0) || (lheader->colorsimportant != 0))
-			return false;
+			found->criterium = CRIT_WEAK;
 
 		filesize = eheader->offset + eheader->size;
 	}
@@ -145,6 +146,5 @@ bool ICORipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*
 	found->startoffset = pos;
 	found->length = filesize;
 	strcpy(found->extension, "ico");
-	found->criterium = CRIT_STRONG;
 	return true;
 }
