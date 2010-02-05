@@ -62,13 +62,10 @@ struct DDSURFACEDESC2
 	uint32 dwReserved2;
 };
 
-// this can be done better (i.e. with simple arithmetic) but I'm too lazy right now to think about it ;-)
+// this works for positive numbers only but that should be sufficient here
 long RoundUp(long i)
 {
-	while (i % 4)
-		i++;
-
-	return i;
+	return 4*((i+3)/4);
 }
 
 bool DDSRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header*/, FoundStruct *found)
