@@ -36,10 +36,6 @@ struct GIFHeader
 	unsigned short width;
 	unsigned short height;
 	unsigned char _flags;
-/*	unsigned char bpp:3;
-	unsigned char sort:1; // 89a only
-	unsigned char colorres:3;
-	unsigned char colormap:1;*/
 	unsigned char backcolor;
 	unsigned char pixelaspect; // 89a only
 };
@@ -52,11 +48,6 @@ struct GIFImageDesc
 	unsigned short width;
 	unsigned short height;
 	unsigned char _flags;
-/*	unsigned char bpp:3;
-	unsigned char reserved:2;
-	unsigned char sort:1;
-	unsigned char interlace:1;
-	unsigned char localcolormap:1;*/
 };
 #pragma pack(pop)
 
@@ -99,22 +90,18 @@ bool GIFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 	version = (int)(header->user_data);
 
 	// check header for gif89 features in a gif87 image
-	//if ((version == 87) && (hdr->sort == 1))
 	if ((version == 87) && (GH_SORT(hdr) == 1))
 		found->criterium = CRIT_WEAK; // sort flag only available in GIF89a
 
 	if ((version == 87) && (hdr->pixelaspect == 1))
 		found->criterium = CRIT_WEAK; // pixel aspect ratio only available in GIF89a
 
-	//if ((hdr->colormap == 0) && (hdr->backcolor != 0))
 	if ((GH_COLORMAP(hdr) == 0) && (hdr->backcolor != 0))
 		found->criterium = CRIT_WEAK; // backcolor != 0 makes no sense without global color map
 
-	//if (hdr->colormap == 1)
 	if (GH_COLORMAP(hdr) == 1)
 	{
 		// skip the color map
-		//pos += 3 * (1 << (hdr->bpp + 1));
 		pos += 3 * (1 << (GH_BPP(hdr) + 1));
 	}
 
@@ -137,7 +124,6 @@ bool GIFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 			// skip IMAGE DESCRIPTOR
 			idesc = (GIFImageDesc *)pos;
 
-			//if ((idesc->sort == 1) && (version = 87))
 			if ((GID_SORT(idesc) == 1) && (version = 87))
 				found->criterium = CRIT_WEAK;
 
@@ -148,11 +134,9 @@ bool GIFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 			pos += 10; // size of image descriptor
 
 			// skip LOCAL COLOR TABLE
-			//if (idesc->localcolormap == 1)
 			if (GID_LOCALCOLORMAP(idesc) == 1)
 			{
 				// skip local color map
-				//pos += 3 * (1 << (idesc->bpp + 1));
 				pos += 3 * (1 << (GID_BPP(idesc) + 1));
 			}
 
@@ -174,6 +158,5 @@ bool GIFRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 	pos++; // skip final trailer
 
 	found->length = pos - found->startoffset;
-	//fprintf(stderr, "BPP %d, SORT %d, COLORRES %d, COLORMAP %d RAW 0x%1x\n", GH_BPP(hdr), GH_SORT(hdr), GH_COLORRES(hdr), GH_COLORMAP(hdr), found->startoffset[10]);
 	return true;
 };
