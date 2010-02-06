@@ -45,7 +45,7 @@ static const int MPEG1SampleRates[] = {
 
 bool MPEGRipper::isValidMP3Header(unsigned char **pos, const HeaderStruct *header)
 {
-	unsigned short CRC;
+	uint16 CRC;
 	bool hasCRC;
 	unsigned char frameHeader[4];
 	int frameLength;
@@ -78,7 +78,7 @@ bool MPEGRipper::isValidMP3Header(unsigned char **pos, const HeaderStruct *heade
 		if (*pos + 2 >= m_start + m_length)
 			return false;
 
-		CRC = *((unsigned short *)(*pos));
+		CRC = *((uint16 *)(*pos));
 		*pos += 2;
 	}
 
