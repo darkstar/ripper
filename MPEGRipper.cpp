@@ -17,6 +17,7 @@
 
 #include <cstring>
 #include <cstdio>
+#include "GlobalDefs.h"
 #include "MPEGRipper.h"
 
 /*
