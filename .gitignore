@@ -7,3 +7,6 @@ examples/
 RIPPED*
 *.tar
 *.zip
+Debug/
+Release/
+*~
