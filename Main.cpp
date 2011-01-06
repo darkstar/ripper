@@ -40,6 +40,7 @@
 #include "PVRRipper.h"
 #include "DDSRipper.h"
 #include "MPEGRipper.h"
+#include "XMRipper.h"
 
 #define MAX_HEADERS 1024
 #define MAX_RIPPERS 256
@@ -129,6 +130,7 @@ int main(int argc, char *argv[])
 	rippers[numRippers++] = new PVRRipper();
 	rippers[numRippers++] = new DDSRipper();
 	rippers[numRippers++] = new MPEGRipper();
+	rippers[numRippers++] = new XMRipper();
 	// TODO: add new modules here
 
 	rippers[numRippers] = 0; // terminate list

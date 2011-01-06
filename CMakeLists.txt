@@ -26,7 +26,8 @@ SET(OBJSOURCES	Main.cpp
 		PVRRipper.cpp
 		RIFFRipper.cpp
 		RTFRipper.cpp
-		VOCRipper.cpp)
+		VOCRipper.cpp
+		XMRipper.cpp)
 
 ADD_EXECUTABLE(ripper ${OBJSOURCES})
 SET_DIRECTORY_PROPERTIES(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "RIPPED_*")
