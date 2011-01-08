@@ -37,6 +37,7 @@
 #include "JPEGRipper.h"
 #include "RTFRipper.h"
 #include "PDFRipper.h"
+#include "PNGRipper.h"
 #include "PVRRipper.h"
 #include "DDSRipper.h"
 #include "MPEGRipper.h"
@@ -131,6 +132,7 @@ int main(int argc, char *argv[])
 	rippers[numRippers++] = new DDSRipper();
 	rippers[numRippers++] = new MPEGRipper();
 	rippers[numRippers++] = new XMRipper();
+	rippers[numRippers++] = new PNGRipper();
 	// TODO: add new modules here
 
 	rippers[numRippers] = 0; // terminate list

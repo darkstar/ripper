@@ -23,6 +23,7 @@ SET(OBJSOURCES	Main.cpp
 		MPEGRipper.cpp
 		PatternMatcher.cpp
 		PDFRipper.cpp
+		PNGRipper.cpp
 		PVRRipper.cpp
 		RIFFRipper.cpp
 		RTFRipper.cpp

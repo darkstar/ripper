@@ -239,6 +239,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PNGRipper.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\PVRRipper.cpp"
 				>
 			</File>
@@ -256,6 +260,10 @@
 			</File>
 			<File
 				RelativePath=".\VOCRipper.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\XMRipper.cpp"
 				>
 			</File>
 		</Filter>
@@ -317,6 +325,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PNGRipper.h"
+				>
+			</File>
+			<File
 				RelativePath=".\PVRRipper.h"
 				>
 			</File>
@@ -338,6 +350,10 @@
 			</File>
 			<File
 				RelativePath=".\VOCRipper.h"
+				>
+			</File>
+			<File
+				RelativePath=".\XMRipper.h"
 				>
 			</File>
 		</Filter>
