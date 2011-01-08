@@ -1,0 +1,67 @@
+Ripper is a flexible tool to extract different types of
+files from (uncompressed) archive files.
+
+It can be used, for example, to extract images, audio and
+video from computer games and demos.
+
+Compiling
+---------
+
+1. get cmake
+2. make a `build` subdir and change into it
+3. type `cmake ..`
+  * alternatively, type `cmake -G "NMake Makefiles" ..`
+    or use any other of the predefined generators
+4. type `make` (UNIX) or `nmake` (MSVC) to compile
+
+
+Usage
+-----
+
+Simple. Run `ripper -l` to show a list of available
+ripper modules (i.e. what filetypes you can rip).
+
+Or run `ripper <filename.ext>` on your datafile to
+begin extraction.
+
+Note: At the moment, the file from which you want to 
+      rip must not exceed a few hundred megs (on a 32
+      bit system) because of a limitation in mmap().
+
+(Technical background: The whole file is mmap()ed into
+the process' virtual memory space and this limits the
+maximum size of the file. I have an experimental branch
+that fixes this but I need to clean it up a bit more
+before actually committing it)
+
+Things to note:
+- The "plugins" are static only at the moment. No DLLs
+  or anything fancy. I prefer to keep it that way, I
+  mean it's not that hard to re-compile as a new plugin
+  emerges...
+
+- The parallel pattern matching algorithm used is Aho-
+  Corasik.
+
+- In case you didn't notice, the source code is GPLv2
+
+- Most of the modules probably have nasty bugs looming
+
+- It is pretty much hand-tailored to little endian sys-
+  tems. Probably nothing works on a big endian system.
+
+- although there are some MSVC project files, they are
+  old and most probably outdated. So they would need
+  some tweaking to get them to run.
+
+- oh and I didn't yet try to build a 64-bit version, so
+  that might be broken as well. The modules do have small
+  compile-time sanity checks that are tested when the
+  program is started, so probably you will notice any
+  problems pretty early.
+
+other than that...
+...have fun!
+
+(c) 2010 Darkstar
+
