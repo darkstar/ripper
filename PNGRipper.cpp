@@ -32,12 +32,12 @@ const HeaderStruct PNGRipper::s_headers[] = {
 struct ChunkHeader
 {
 	uint32 size;
-	char id[4];
+	unsigned char id[4];
 	uint32 crc;
 };
 #pragma pack(pop)
 
-static bool validChunkName(char *n)
+static bool validChunkName(unsigned char *n)
 {
 	return isalpha(n[0]) && isalpha(n[1]) && isalpha(n[2]) && isalpha(n[3]);
 }
