@@ -93,7 +93,7 @@ bool PNGRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fo
 	// skip over IEND chunk size
 	pos += 12 + FROM_BIG_ENDIAN(chdr->size);
 
-	strcpy(found->extension, "PNG");
+	strcpy(found->extension, "png");
 	found->criterium = CRIT_STRONG;
 	found->length = pos - found->startoffset;
 

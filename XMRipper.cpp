@@ -134,7 +134,7 @@ bool XMRipper::checkLocation(unsigned char *pos, const HeaderStruct *header, Fou
 		return false;
 
 	found->criterium = CRIT_STRONG;
-	strcpy(found->extension, "XM");
+	strcpy(found->extension, "xm");
 
 	if (hdr->trackerversion != 0x0104)
 		found->criterium = CRIT_WEAK;
