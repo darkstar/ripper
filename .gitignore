@@ -10,3 +10,7 @@ RIPPED*
 Debug/
 Release/
 *~
+*.ncb
+*.suo
+*.user
+build/
