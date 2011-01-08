@@ -55,8 +55,8 @@ int numHeaders = 0;
 int numRippers = 0;
 unsigned long totalCalls = 0;
 unsigned long failedCalls = 0;
-unsigned long starttime;
-unsigned long stoptime;
+unsigned long long starttime;
+unsigned long long stoptime;
 File *f;
 PatternMatcher *pm = new PatternMatcher();
 
@@ -87,9 +87,9 @@ void SaveFile(FoundStruct *fstruct)
 
 void PrintStatistics()
 {
-	unsigned long secs = (stoptime - starttime) / 1000000;
-	fprintf(stderr, "%ld MB scanned in %ld seconds, %ld of %ld checks successful (%5.1f%%)\n(%d patterns and %d ripper modules loaded)\n",
-		f->getSize() / (1024*1024), secs, totalCalls - failedCalls,  totalCalls, 
+	unsigned long long secs = (stoptime - starttime) / 1000000;
+	fprintf(stderr, "%lld MB scanned in %lld seconds, %ld of %ld checks successful (%5.1f%%)\n(%d patterns and %d ripper modules loaded)\n",
+		f->getSize() / (1024ULL*1024ULL), secs, totalCalls - failedCalls,  totalCalls, 
 		100.0 * (totalCalls - failedCalls)/totalCalls, numHeaders, numRippers);
 }
 
