@@ -92,6 +92,36 @@ bool RIFFRipper::checkLocation(unsigned char *pos, const HeaderStruct * /*header
 		strcpy(found->extension, "str");
 		found->criterium = CRIT_STRONG;
 	}
+	else if (strncmp(hdr->format, "RDIB", 4) == 0)
+	{
+		strcpy(found->extension, "dib");
+		found->criterium = CRIT_STRONG;
+	}
+	else if (strncmp(hdr->format, "RMMP", 4) == 0)
+	{
+		strcpy(found->extension, "mmm");
+		found->criterium = CRIT_STRONG;
+	}
+	else if (strncmp(hdr->format, "RMP3", 4) == 0)
+	{
+		strcpy(found->extension, "mp3");
+		found->criterium = CRIT_STRONG;
+	}
+	else if (strncmp(hdr->format, "sfbk", 4) == 0)
+	{
+		strcpy(found->extension, "sf2");
+		found->criterium = CRIT_STRONG;
+	}
+	else if (strncmp(hdr->format, "NIFF", 4) == 0)
+	{
+		strcpy(found->extension, "nif");
+		found->criterium = CRIT_STRONG;
+	}
+	else if (strncmp(hdr->format, "4XMV", 4) == 0)
+	{
+		strcpy(found->extension, "4xm");
+		found->criterium = CRIT_STRONG;
+	}
 	else
 	{
 		return false;  // this generated a lot of false positives
